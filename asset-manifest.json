@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/466/education-app/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/466/education-app/static/js/main.0c519b0e.chunk.js",
-    "main.js.map": "/466/education-app/static/js/main.0c519b0e.chunk.js.map",
-    "runtime-main.js": "/466/education-app/static/js/runtime-main.05e3a2d6.js",
-    "runtime-main.js.map": "/466/education-app/static/js/runtime-main.05e3a2d6.js.map",
-    "static/js/2.dec7133d.chunk.js": "/466/education-app/static/js/2.dec7133d.chunk.js",
-    "static/js/2.dec7133d.chunk.js.map": "/466/education-app/static/js/2.dec7133d.chunk.js.map",
-    "static/js/3.e5f837da.chunk.js": "/466/education-app/static/js/3.e5f837da.chunk.js",
-    "static/js/3.e5f837da.chunk.js.map": "/466/education-app/static/js/3.e5f837da.chunk.js.map",
-    "index.html": "/466/education-app/index.html",
-    "static/css/main.9d5b29c0.chunk.css.map": "/466/education-app/static/css/main.9d5b29c0.chunk.css.map",
-    "static/js/2.dec7133d.chunk.js.LICENSE.txt": "/466/education-app/static/js/2.dec7133d.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/466/education-app/static/media/logo.6ce24c58.svg"
+    "main.css": "/csc466_project/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/csc466_project/static/js/main.0c519b0e.chunk.js",
+    "main.js.map": "/csc466_project/static/js/main.0c519b0e.chunk.js.map",
+    "runtime-main.js": "/csc466_project/static/js/runtime-main.2ecb3bb9.js",
+    "runtime-main.js.map": "/csc466_project/static/js/runtime-main.2ecb3bb9.js.map",
+    "static/js/2.dec7133d.chunk.js": "/csc466_project/static/js/2.dec7133d.chunk.js",
+    "static/js/2.dec7133d.chunk.js.map": "/csc466_project/static/js/2.dec7133d.chunk.js.map",
+    "static/js/3.e5f837da.chunk.js": "/csc466_project/static/js/3.e5f837da.chunk.js",
+    "static/js/3.e5f837da.chunk.js.map": "/csc466_project/static/js/3.e5f837da.chunk.js.map",
+    "index.html": "/csc466_project/index.html",
+    "static/css/main.9d5b29c0.chunk.css.map": "/csc466_project/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.dec7133d.chunk.js.LICENSE.txt": "/csc466_project/static/js/2.dec7133d.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/csc466_project/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.05e3a2d6.js",
+    "static/js/runtime-main.2ecb3bb9.js",
     "static/js/2.dec7133d.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
     "static/js/main.0c519b0e.chunk.js"
