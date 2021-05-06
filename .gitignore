@@ -17,4 +17,5 @@ yarn-error.log
 .DS_Store
 .changelog
 .node_repl_history
+.ipynb_checkpoints
 
