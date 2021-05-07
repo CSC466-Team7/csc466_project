@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core/';
+import Markdown from "./components/Markdown";
 
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
@@ -32,6 +33,9 @@ function App() {
         <Navbar />
         <Container>
           <Switch>
+            <Route exact path="/example-markdown">
+              <Markdown fileName={"running-code.md"}/>
+            </Route>
             <Route exact path="/">
               <Home />
             </Route>
