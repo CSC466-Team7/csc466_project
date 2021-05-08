@@ -1,27 +1,27 @@
-import React from 'react';
+import React from "react";
 import {
   Button,
   Card,
   CardActions,
   CardContent,
   CardMedia,
-} from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
-import CTACard from '../components/CTACard';
-import Gallery from '../components/Gallery';
+import CTACard from "../components/CTACard";
+import Gallery from "../components/Gallery";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
-      width: '30%',
+      width: "30%",
     },
     media: {
-      height: '240px',
+      height: "240px",
     },
     splash: {
-      display: 'block',
-      margin: '40px auto',
+      display: "block",
+      margin: "40px auto",
     },
   }),
 );

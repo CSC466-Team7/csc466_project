@@ -1,24 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { AppBar, Grid } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import React from "react";
+import { Link } from "react-router-dom";
+import { AppBar, Grid } from "@material-ui/core";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      overflow: 'hidden',
-      padding: '40px 0',
+      overflow: "hidden",
+      padding: "40px 0",
     },
     grid: {
-      width: '80%',
-      margin: '0 auto',
-      '& h3 a': {
-        color: 'white',
+      width: "80%",
+      margin: "0 auto",
+      "& h3 a": {
+        color: "white",
       },
-      '& a': {
-        display: 'block',
-        margin: '16px 0',
-        color: '#ddd',
+      "& a": {
+        display: "block",
+        margin: "16px 0",
+        color: "#ddd",
       },
     },
   }),

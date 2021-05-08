@@ -1,15 +1,15 @@
-import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { AppBar, Toolbar, Link } from '@material-ui/core';
+import React from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { AppBar, Toolbar, Link } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     bar: {
-      justifyContent: 'space-between',
+      justifyContent: "space-between",
     },
     links: {
-      color: 'white',
-      padding: '0 12px',
+      color: "white",
+      padding: "0 12px",
     },
   }),
 );

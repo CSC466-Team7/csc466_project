@@ -1,24 +1,24 @@
-import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import React from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      margin: '60px auto',
-      width: '950px',
-      padding: '0 25px',
-      backgroundColor: '#eeeef0',
-      borderRadius: '4px',
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      margin: "60px auto",
+      width: "950px",
+      padding: "0 25px",
+      backgroundColor: "#eeeef0",
+      borderRadius: "4px",
     },
   }),
 );
 
 interface CTAProps {
   children: React.ReactNode,
-};
+}
 
 export default function CTACard(props: CTAProps) {
   const classes = useStyles();
