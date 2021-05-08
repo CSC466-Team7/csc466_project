@@ -1,0 +1,23 @@
+{
+  "name": "csc466_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSC466-Team7/csc466_project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSC466-Team7/csc466_project/issues"
+  },
+  "homepage": "https://github.com/CSC466-Team7/csc466_project#readme",
+  "devDependencies": {
+    "husky": "^6.0.0"
+  }
+}
