@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route, HashRouter } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core/";
 import Markdown from "./components/Markdown";
@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const theme = createMuiTheme({
   palette: {
@@ -28,22 +29,25 @@ const theme = createMuiTheme({
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ThemeProvider theme={theme}>
         <Navbar />
         <Container>
           <Switch>
-            <Route exact path="/example-markdown">
+            <Route path="/example-markdown">
               <Markdown fileName={"running-code.md"}/>
             </Route>
             <Route exact path="/">
               <Home />
             </Route>
+            <Route path="/heart-disease">
+              <Markdown fileName={"heart_decision_tree_classifier.md"} />
+            </Route>
           </Switch>
         </Container>
         <Footer />
       </ThemeProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
