@@ -6,6 +6,7 @@ import Markdown from "./components/Markdown";
 
 import Home from "./pages/Home";
 import PreliminarySkills from "./pages/PreliminarySkills";
+import Introduction from "./pages/Introduction";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -39,6 +40,7 @@ function App() {
               <Markdown fileName={"running-code.md"}/>
             </Route>
             <Route exact path="/" component={Home} />
+            <Route path="/introduction" component={Introduction} />
             <Route path="/preliminary-skills" component={PreliminarySkills} />
             <Route path="/heart-disease">
               <Markdown fileName={"heart_decision_tree_classifier.md"} />
