@@ -38,7 +38,7 @@ export default function Home() {
           component="button"
           color="primary"
           variant="contained"
-          href="/getting-started"
+          href="/#/getting-started"
         >
           Get Started
         </Button>
@@ -60,7 +60,7 @@ export default function Home() {
           component="button"
           color="primary"
           variant="contained"
-          href="/introduction"
+          href="/#/introduction"
         >
           Introduction
         </Button>
@@ -118,7 +118,7 @@ export default function Home() {
           component="button"
           color="primary"
           variant="contained"
-          href="/preliminary-skills"
+          href="/#/preliminary-skills"
         >
           Preliminary Skills
         </Button>

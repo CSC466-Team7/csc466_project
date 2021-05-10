@@ -5,6 +5,7 @@ import { Container } from "@material-ui/core/";
 import Markdown from "./components/Markdown";
 
 import Home from "./pages/Home";
+import PreliminarySkills from "./pages/PreliminarySkills";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -37,9 +38,8 @@ function App() {
             <Route path="/example-markdown">
               <Markdown fileName={"running-code.md"}/>
             </Route>
-            <Route exact path="/">
-              <Home />
-            </Route>
+            <Route exact path="/" component={Home} />
+            <Route path="/preliminary-skills" component={PreliminarySkills} />
             <Route path="/heart-disease">
               <Markdown fileName={"heart_decision_tree_classifier.md"} />
             </Route>

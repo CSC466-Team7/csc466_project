@@ -24,16 +24,16 @@ export default function ButtonAppBar() {
           Decision Trees
         </h3>
         <span>
-          <Link className={classes.links} href="/">
+          <Link className={classes.links} href="/#/">
             Home
           </Link>
-          <Link className={classes.links} href="/introduction">
+          <Link className={classes.links} href="/#/introduction">
             Introduction
           </Link>
-          <Link className={classes.links} href="/examples">
+          <Link className={classes.links} href="/#/examples">
             Examples
           </Link>
-          <Link className={classes.links} href="/preliminary-skills">
+          <Link className={classes.links} href="/#/preliminary-skills">
             Preliminary Skills
           </Link>
         </span>
