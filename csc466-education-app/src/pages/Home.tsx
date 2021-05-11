@@ -32,8 +32,8 @@ export default function Home() {
   return (
     <>
       <section>
-        <h1>Your Intro to Decesion Trees</h1>
-        <p>An explainable, data-driven approach to making decesions</p>
+        <h1>Your Intro to Decision Trees</h1>
+        <p>An explainable, data-driven approach to making decisions</p>
         <Button
           component="button"
           color="primary"
