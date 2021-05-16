@@ -37,10 +37,8 @@ export default function Footer() {
         </Grid>
 
         <Grid item xs={2}>
-          <h3>
-            <Link to='/introduction'>Introduction</Link>
-          </h3>
-          <Link to='/decision-trees'>What are Decision Trees</Link>
+          <h3>Introduction</h3>
+          <Link to='/introduction'>Intro to Decision Trees</Link>
           <Link to='/getting-started'>Getting Started</Link>
         </Grid>
 

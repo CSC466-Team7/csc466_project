@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: "center",
       margin: "60px auto",
       width: "950px",
-      padding: "0 25px",
+      padding: "8px 25px 0",
       backgroundColor: "#eeeef0",
       borderRadius: "4px",
     },
