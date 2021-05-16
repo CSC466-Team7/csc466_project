@@ -1,5 +1,8 @@
 name: Generate Markdown Files
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   generate:
     runs-on: ubuntu-latest
@@ -16,7 +19,16 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install flake8 pytest jupyter
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Nuke code/markdown
+        run: rm -rf code/markdown/*
       - name: Run python script (code/generate_md.py)
         run: |
           cd code
           python3 generate_md.py
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          empty: true
+          message: Autogenerate markdown files
+          branch: main
