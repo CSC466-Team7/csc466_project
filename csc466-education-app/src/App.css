@@ -2,3 +2,7 @@ section {
   text-align: center;
   margin: 60px 0 30px;
 }
+
+article {
+  padding: 0 15%;
+}
