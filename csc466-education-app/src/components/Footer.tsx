@@ -29,38 +29,28 @@ export default function Footer() {
 
   return (
     <AppBar position="static" component="footer" className={classes.root}>
-      <Grid container spacing={2} className={classes.grid}>
-        <Grid item xs={4}>
+      <Grid container spacing={1} className={classes.grid}>
+        <Grid item xs={5}>
           <h2>Decision Trees</h2>
           <p>CSC 466 – Spring 2021</p>
           <p>Cal Poly – Dr. Anderson</p>
         </Grid>
 
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <h3>Introduction</h3>
           <Link to='/introduction'>Intro to Decision Trees</Link>
           <Link to='/getting-started'>Getting Started</Link>
         </Grid>
 
         <Grid item xs={2}>
-          <h3>
-            <Link to='/examples'>Examples</Link>
-          </h3>
+          <h3>Examples</h3>
           <Link to='/example-1'>Example #1</Link>
           <Link to='/example-2'>Example #2</Link>
         </Grid>
 
         <Grid item xs={2}>
-          <h3>
-            <Link to='/preliminary-skills'>Preliminary Skills</Link>
-          </h3>
-          <Link to='/preliminary-skills/numpy'>Numpy</Link>
-          <Link to='/preliminary-skills/pandas'>Pandas</Link>
-          <Link to='/preliminary-skills/scikit-learn'>Sci-kit Leanr</Link>
-        </Grid>
-
-        <Grid item xs={2}>
           <h3>Resources</h3>
+          <Link to='/preliminary-skills'>Preliminary Skills</Link>
           <a
             href="https://github.com/CSC466-Team7/csc466_project"
             target="_blank"
