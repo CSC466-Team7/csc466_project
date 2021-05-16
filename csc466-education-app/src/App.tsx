@@ -37,13 +37,13 @@ function App() {
         <Container>
           <Switch>
             <Route path="/example-markdown">
-              <Markdown fileName={"running-code.md"}/>
+              <Markdown fileName={"running-code"}/>
             </Route>
             <Route exact path="/" component={Home} />
             <Route path="/introduction" component={Introduction} />
             <Route path="/preliminary-skills" component={PreliminarySkills} />
             <Route path="/heart-disease">
-              <Markdown fileName={"heart_decision_tree_classifier.md"} />
+              <Markdown fileName={"heart_decision_tree_classifier"} />
             </Route>
           </Switch>
         </Container>

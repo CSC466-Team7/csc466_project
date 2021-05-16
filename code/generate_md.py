@@ -28,7 +28,7 @@ for file in os.listdir(directory):
         with open(f'markdown/{markdown_prefix}_cleaned.md', 'w') as writer:
             writer.write(nb_body)
 
-        # original file
+        # Original file
         nb_body, resources = MarkdownExporter().from_filename(f"notebooks/{filename}")
         with open(f'markdown/{markdown_prefix}_original.md', 'w') as writer:
             writer.write(nb_body)
