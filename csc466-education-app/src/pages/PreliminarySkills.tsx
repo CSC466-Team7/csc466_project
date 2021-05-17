@@ -35,8 +35,7 @@ export default function PreliminarySkills() {
         <p>
           Need a quick brush up on some of the KDD tools used to build decesion
           trees? Look no further!<br />
-          This is a compiled list of resources for some of the common tools used
-          in data science.
+          Here are links to tutorials of some commonly used tools in data science.
         </p>
       </section>
 
@@ -52,6 +51,16 @@ export default function PreliminarySkills() {
             <p>A library for easily handling multi-dimensional arrays and
             matrices.</p>
           </CardContent>
+          <CardActions>
+            <Button
+              color="primary"
+              variant="contained"
+              href="https://numpy.org/doc/stable/user/absolute_beginners.html"
+              target="_blank"
+            >
+              View Tutorial
+            </Button>
+          </CardActions>
         </Card>
 
         <Card className={classes.card}>
@@ -64,6 +73,16 @@ export default function PreliminarySkills() {
             <h3>Pandas</h3>
             <p>A library for powerful data analysis and manipulation.</p>
           </CardContent>
+          <CardActions>
+            <Button
+              color="primary"
+              variant="contained"
+              href="https://pandas.pydata.org/pandas-docs/stable/user_guide/10min.html"
+              target="_blank"
+            >
+              View Tutorial
+            </Button>
+          </CardActions>
         </Card>
 
         <Card className={classes.card}>
@@ -77,12 +96,24 @@ export default function PreliminarySkills() {
             <p>A library that makes ML processes (like dimensionality reduction)
             easy.</p>
           </CardContent>
+          <CardActions>
+            <Button
+              color="primary"
+              variant="contained"
+              href="https://scikit-learn.org/stable/tutorial/index.html"
+              target="_blank"
+            >
+              View Tutorial
+            </Button>
+          </CardActions>
         </Card>
       </Gallery>
 
       <section>
-        <p>Unfortunately this cannot be comprehensive, but can hopefully acts as
-        a refresher.</p>
+        <p>
+          While these won't cover everything you'll need to know, hopefully
+          they can serve as a nice refresher.
+        </p>
       </section>
     </>
   );
