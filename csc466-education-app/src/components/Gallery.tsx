@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme: Theme) =>
     gallery: {
       display: "flex",
       justifyContent: "space-around",
+      flexWrap: "wrap",
     },
   }),
 );

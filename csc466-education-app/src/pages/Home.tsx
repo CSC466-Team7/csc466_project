@@ -15,6 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
       width: "30%",
+      minWidth: "300px",
+      margin: "10px 8px",
     },
     media: {
       height: "240px",
@@ -22,6 +24,8 @@ const useStyles = makeStyles((theme: Theme) =>
     splash: {
       display: "block",
       margin: "40px auto",
+      width: "90%",
+      backgroundColor: "#cccccc",
     },
   }),
 );
@@ -47,8 +51,8 @@ export default function Home() {
       <img
         className={classes.splash}
         src="https://www.decadeonrestoration.org/themes/unrestore/images/tree.jpg"
-        alt="tree"
-        width="800"
+        alt="a tree"
+        width="650"
       />
 
       <CTACard>
@@ -82,6 +86,15 @@ export default function Home() {
             <h3>Getting Started</h3>
             <p>Everything you need to know to set up your environment</p>
           </CardContent>
+          <CardActions>
+            <Button
+              color="primary"
+              variant="contained"
+              href="/#/getting-started"
+            >
+              Getting Started
+            </Button>
+          </CardActions>
         </Card>
 
         <Card className={classes.card}>
@@ -94,6 +107,15 @@ export default function Home() {
             <h3>[Example 1]</h3>
             <p>Description of [Example 1]</p>
           </CardContent>
+          <CardActions>
+            <Button
+              color="primary"
+              variant="contained"
+              href="/#/examples/1"
+            >
+              See Example #1
+            </Button>
+          </CardActions>
         </Card>
 
         <Card className={classes.card}>
@@ -106,6 +128,15 @@ export default function Home() {
             <h3>[Example 2]</h3>
             <p>Description of [Example 2]</p>
           </CardContent>
+          <CardActions>
+            <Button
+              color="primary"
+              variant="contained"
+              href="/#/examples/2"
+            >
+              See Example #2
+            </Button>
+          </CardActions>
         </Card>
       </Gallery>
 

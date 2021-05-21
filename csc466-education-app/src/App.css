@@ -6,3 +6,8 @@ section {
 article {
   padding: 0 15%;
 }
+
+a:hover > span, /* button hover */
+span > a:hover /* link hover */ {
+  color: white !important;
+}

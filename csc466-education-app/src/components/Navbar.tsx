@@ -2,6 +2,7 @@ import React from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Link } from "@material-ui/core";
 
+// TODO: collapse links into hamburger menu on small screen
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     bar: {
