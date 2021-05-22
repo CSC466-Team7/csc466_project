@@ -1,4 +1,3 @@
-
 # Predicting Heart Disease
 
 
@@ -644,7 +643,7 @@ print_tree(tree)
             }
         }
     }
-    
+
 
 ### How did our decision tree do with the test set?
 
@@ -658,7 +657,7 @@ print(f'F1 score: {f1_score(y_test, t_test)}')
 
     Accuracy: 0.8241758241758241
     F1 score: 0.8367346938775511
-    
+
 
 ### How does this compare with the battle-tried SciKit Learn version?
 
@@ -678,6 +677,6 @@ print(f'F1 score: {f1_score(y_model_test, t_test)}')
 
     Accuracy: 0.7912087912087912
     F1 score: 0.7999999999999999
-    
+
 
 ### Not bad!

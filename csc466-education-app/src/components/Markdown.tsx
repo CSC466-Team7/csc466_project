@@ -42,7 +42,7 @@ function OutputComponent(props: any) {
 export default function Markdown(props: { fileName: string; }) {
   const [markdownAsString, setMarkdownAsString] = useState("");
   const fetchMarkdown = async () => {
-    const url = `${ASSETS_URL}/${props.fileName}`;
+    const url = `${ASSETS_URL}/${props.fileName}_cleaned.md`;
     // Switch when testing locally
     // const file = await
     // import("../markdown/heart_decision_tree_classifier.md"); const toFetch =
