@@ -7,6 +7,8 @@ import Markdown from "./components/Markdown";
 import Home from "./pages/Home";
 import Introduction from "./pages/Introduction";
 import GettingStarted from "./pages/GettingStarted";
+import ExampleList from "./pages/examples/ExampleList";
+import ExampleHolder from "./pages/examples/Holder";
 import PreliminarySkills from "./pages/PreliminarySkills";
 
 import Navbar from "./components/Navbar";
@@ -38,13 +40,19 @@ function App() {
         <Navbar />
         <Container>
           <Switch>
-            <Route path="/example-markdown">
-              <Markdown fileName={"running-code"}/>
-            </Route>
+
             <Route exact path="/" component={Home} />
             <Route path="/introduction" component={Introduction} />
             <Route path="/getting-started" component={GettingStarted} />
             <Route path="/preliminary-skills" component={PreliminarySkills} />
+
+            <Route path="/example/1" component={ExampleHolder} />
+            <Route path="/example/2" component={ExampleHolder} />
+            <Route path="/example" component={ExampleList} />
+
+            <Route path="/example-markdown">
+              <Markdown fileName={"running-code"}/>
+            </Route>
             <Route path="/heart-disease">
               <Markdown fileName={"heart_decision_tree_classifier"} />
             </Route>

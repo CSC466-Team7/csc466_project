@@ -202,7 +202,7 @@ export default function Introduction() {
           </p>
         </span>
         <Button
-          component="button"
+          component="a"
           color="primary"
           variant="contained"
           href="/#/getting-started"

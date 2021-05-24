@@ -31,7 +31,7 @@ export default function ButtonAppBar() {
           <Link className={classes.links} href="/#/introduction">
             Introduction
           </Link>
-          <Link className={classes.links} href="/#/examples">
+          <Link className={classes.links} href="/#/example">
             Examples
           </Link>
           <Link className={classes.links} href="/#/preliminary-skills">

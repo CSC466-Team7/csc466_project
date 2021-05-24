@@ -1,34 +1,30 @@
 import React from "react";
+
 import {
   Button,
-  Card,
   CardActions,
   CardContent,
   CardMedia,
 } from "@material-ui/core";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 
 import Gallery from "../components/Gallery";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    card: {
-      width: "30%",
-      minWidth: "300px",
-      margin: "10px 8px",
-    },
-    media: {
-      height: "240px",
-    },
-    splash: {
-      display: "block",
-      margin: "40px auto",
-    },
-  }),
-);
+import Card from "../components/Card";
 
 export default function PreliminarySkills() {
-  const classes = useStyles();
+  const rubix = {
+    url: "https://www.megahowto.com/wp-content/uploads/2009/09/Rubix-Cube.jpg",
+    title: "a rubix cube",
+  };
+
+  const pandas = {
+    url: "https://cameoglassuk.co.uk/wp-content/uploads/2016/07/EATING-PANDAS-1.jpg",
+    title: "pandas eating bamboo",
+  };
+
+  const clustering = {
+    url:"https://miro.medium.com/max/1000/1*0DDt5Xp9z6ecj5eL6FNAfQ.png",
+    title:"data clustering example",
+  };
 
   return (
     <>
@@ -42,12 +38,7 @@ export default function PreliminarySkills() {
       </section>
 
       <Gallery>
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="https://www.megahowto.com/wp-content/uploads/2009/09/Rubix-Cube.jpg"
-            title="a rubix cube"
-          />
+        <Card img={rubix}>
           <CardContent>
             <h3>Numpy</h3>
             <p>A library for easily handling multi-dimensional arrays and
@@ -65,12 +56,7 @@ export default function PreliminarySkills() {
           </CardActions>
         </Card>
 
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="https://cameoglassuk.co.uk/wp-content/uploads/2016/07/EATING-PANDAS-1.jpg"
-            title="pandas eating bamboo"
-          />
+        <Card img={pandas}>
           <CardContent>
             <h3>Pandas</h3>
             <p>A library for powerful data analysis and manipulation.</p>
@@ -87,12 +73,7 @@ export default function PreliminarySkills() {
           </CardActions>
         </Card>
 
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="https://miro.medium.com/max/1000/1*0DDt5Xp9z6ecj5eL6FNAfQ.png"
-            title="data clustering example"
-          />
+        <Card img={clustering}>
           <CardContent>
             <h3>Scikit Learn</h3>
             <p>A library that makes ML processes (like dimensionality reduction)
