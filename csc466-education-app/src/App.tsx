@@ -5,6 +5,12 @@ import { Container } from "@material-ui/core/";
 import Markdown from "./components/Markdown";
 
 import Home from "./pages/Home";
+import Introduction from "./pages/Introduction";
+import GettingStarted from "./pages/GettingStarted";
+import ExampleList from "./pages/examples/ExampleList";
+import ExampleHolder from "./pages/examples/Holder";
+import PreliminarySkills from "./pages/PreliminarySkills";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -34,14 +40,21 @@ function App() {
         <Navbar />
         <Container>
           <Switch>
+
+            <Route exact path="/" component={Home} />
+            <Route path="/introduction" component={Introduction} />
+            <Route path="/getting-started" component={GettingStarted} />
+            <Route path="/preliminary-skills" component={PreliminarySkills} />
+
+            <Route path="/example/1" component={ExampleHolder} />
+            <Route path="/example/2" component={ExampleHolder} />
+            <Route path="/example" component={ExampleList} />
+
             <Route path="/example-markdown">
-              <Markdown fileName={"running-code.md"}/>
-            </Route>
-            <Route exact path="/">
-              <Home />
+              <Markdown fileName={"running-code"}/>
             </Route>
             <Route path="/heart-disease">
-              <Markdown fileName={"heart_decision_tree_classifier.md"} />
+              <Markdown fileName={"heart_decision_tree_classifier"} />
             </Route>
           </Switch>
         </Container>

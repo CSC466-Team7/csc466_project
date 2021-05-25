@@ -2,3 +2,13 @@ section {
   text-align: center;
   margin: 60px 0 30px;
 }
+
+article {
+  margin: 30px 0;
+  padding: 0 15%;
+}
+
+a:hover > span, /* button hover */
+span > a:hover /* link hover */ {
+  color: white !important;
+}

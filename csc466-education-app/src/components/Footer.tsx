@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: "40px 0",
     },
     grid: {
+      display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
       width: "80%",
       margin: "0 auto",
       "& h3 a": {
@@ -20,6 +23,19 @@ const useStyles = makeStyles((theme: Theme) =>
         margin: "16px 0",
         color: "#ddd",
       },
+      "& div": {
+        display: "inline-block",
+      },
+    },
+    siteTag: {
+      width: "40%",
+      minWidth: "300px",
+      marginBottom: "30px",
+    },
+    linkTag: {
+      width: "16.6%",
+      minWidth: "200px",
+      paddingRight: "3px",
     },
   }),
 );
@@ -29,40 +45,27 @@ export default function Footer() {
 
   return (
     <AppBar position="static" component="footer" className={classes.root}>
-      <Grid container spacing={2} className={classes.grid}>
-        <Grid item xs={4}>
+      <div className={classes.grid}>
+        <div className={classes.siteTag}>
           <h2>Decision Trees</h2>
-          <p>CSC 466 – Spring 2021</p>
-          <p>Cal Poly – Dr. Anderson</p>
-        </Grid>
+          <p>CSC 466 – Spring 2021<br />Cal Poly – Dr. Anderson</p>
+        </div>
 
-        <Grid item xs={2}>
-          <h3>
-            <Link to='/introduction'>Introduction</Link>
-          </h3>
-          <Link to='/decision-trees'>What are Decision Trees</Link>
+        <div className={classes.linkTag}>
+          <h3>Introduction</h3>
+          <Link to='/introduction'>Intro to Decision Trees</Link>
           <Link to='/getting-started'>Getting Started</Link>
-        </Grid>
+        </div>
 
-        <Grid item xs={2}>
-          <h3>
-            <Link to='/examples'>Examples</Link>
-          </h3>
-          <Link to='/example-1'>Example #1</Link>
-          <Link to='/example-2'>Example #2</Link>
-        </Grid>
+        <div className={classes.linkTag}>
+          <h3>Examples</h3>
+          <Link to='/example/1'>Example #1</Link>
+          <Link to='/example/2'>Example #2</Link>
+        </div>
 
-        <Grid item xs={2}>
-          <h3>
-            <Link to='/preliminary-skills'>Preliminary Skills</Link>
-          </h3>
-          <Link to='/preliminary-skills/numpy'>Numpy</Link>
-          <Link to='/preliminary-skills/pandas'>Pandas</Link>
-          <Link to='/preliminary-skills/scikit-learn'>Sci-kit Leanr</Link>
-        </Grid>
-
-        <Grid item xs={2}>
+        <div className={classes.linkTag}>
           <h3>Resources</h3>
+          <Link to='/preliminary-skills'>Preliminary Skills</Link>
           <a
             href="https://github.com/CSC466-Team7/csc466_project"
             target="_blank"
@@ -70,9 +73,9 @@ export default function Footer() {
           >
             GitHub
           </a>
-          <p>YouTube</p>
-        </Grid>
-      </Grid>
+        </div>
+
+      </div>
     </AppBar>
   );
 }
