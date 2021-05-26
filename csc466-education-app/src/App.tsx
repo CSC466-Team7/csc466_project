@@ -54,7 +54,11 @@ function App() {
               <Markdown fileName={"running-code"}/>
             </Route>
             <Route path="/heart-disease">
-              <Markdown fileName={"heart_decision_tree_classifier"} />
+              <Markdown
+                fileName={"heart_decision_tree_classifier"}
+                version="cleaned"
+                dataset="heart.csv"
+              />
             </Route>
           </Switch>
         </Container>
