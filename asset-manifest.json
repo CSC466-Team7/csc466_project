@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/csc466_project/static/css/main.213ec69e.chunk.css",
-    "main.js": "/csc466_project/static/js/main.243b4e9b.chunk.js",
-    "main.js.map": "/csc466_project/static/js/main.243b4e9b.chunk.js.map",
-    "runtime-main.js": "/csc466_project/static/js/runtime-main.1db1a837.js",
-    "runtime-main.js.map": "/csc466_project/static/js/runtime-main.1db1a837.js.map",
-    "static/css/2.800be05e.chunk.css": "/csc466_project/static/css/2.800be05e.chunk.css",
-    "static/js/2.7d56bfde.chunk.js": "/csc466_project/static/js/2.7d56bfde.chunk.js",
-    "static/js/2.7d56bfde.chunk.js.map": "/csc466_project/static/js/2.7d56bfde.chunk.js.map",
-    "static/js/3.4e16766f.chunk.js": "/csc466_project/static/js/3.4e16766f.chunk.js",
-    "static/js/3.4e16766f.chunk.js.map": "/csc466_project/static/js/3.4e16766f.chunk.js.map",
+    "main.css": "/csc466_project/static/css/main.a0e6d22f.chunk.css",
+    "main.js": "/csc466_project/static/js/main.4d407718.chunk.js",
+    "main.js.map": "/csc466_project/static/js/main.4d407718.chunk.js.map",
+    "runtime-main.js": "/csc466_project/static/js/runtime-main.31ce0289.js",
+    "runtime-main.js.map": "/csc466_project/static/js/runtime-main.31ce0289.js.map",
+    "static/css/2.4006d51d.chunk.css": "/csc466_project/static/css/2.4006d51d.chunk.css",
+    "static/js/2.ba55f169.chunk.js": "/csc466_project/static/js/2.ba55f169.chunk.js",
+    "static/js/2.ba55f169.chunk.js.map": "/csc466_project/static/js/2.ba55f169.chunk.js.map",
+    "static/js/3.3502f91d.chunk.js": "/csc466_project/static/js/3.3502f91d.chunk.js",
+    "static/js/3.3502f91d.chunk.js.map": "/csc466_project/static/js/3.3502f91d.chunk.js.map",
     "index.html": "/csc466_project/index.html",
-    "static/css/2.800be05e.chunk.css.map": "/csc466_project/static/css/2.800be05e.chunk.css.map",
-    "static/css/main.213ec69e.chunk.css.map": "/csc466_project/static/css/main.213ec69e.chunk.css.map",
-    "static/js/2.7d56bfde.chunk.js.LICENSE.txt": "/csc466_project/static/js/2.7d56bfde.chunk.js.LICENSE.txt"
+    "static/css/2.4006d51d.chunk.css.map": "/csc466_project/static/css/2.4006d51d.chunk.css.map",
+    "static/css/main.a0e6d22f.chunk.css.map": "/csc466_project/static/css/main.a0e6d22f.chunk.css.map",
+    "static/js/2.ba55f169.chunk.js.LICENSE.txt": "/csc466_project/static/js/2.ba55f169.chunk.js.LICENSE.txt",
+    "static/media/katex.min.css": "/csc466_project/static/media/KaTeX_Typewriter-Regular.b6a56b14.woff"
   },
   "entrypoints": [
-    "static/js/runtime-main.1db1a837.js",
-    "static/css/2.800be05e.chunk.css",
-    "static/js/2.7d56bfde.chunk.js",
-    "static/css/main.213ec69e.chunk.css",
-    "static/js/main.243b4e9b.chunk.js"
+    "static/js/runtime-main.31ce0289.js",
+    "static/css/2.4006d51d.chunk.css",
+    "static/js/2.ba55f169.chunk.js",
+    "static/css/main.a0e6d22f.chunk.css",
+    "static/js/main.4d407718.chunk.js"
   ]
 }
