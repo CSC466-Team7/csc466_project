@@ -17,24 +17,24 @@ export default function Introduction() {
         <p>maybe some details about the goal of this example</p>
       </article>
 
-      <CTACard>
-        <span>
-          <h2>Download example</h2>
-          <p>
-            To follow along download the example. Need&nbsp;
-            <Link to="../getting-started">help</Link>?
-          </p>
-        </span>
-        <Button
-          component="a"
-          color="primary"
-          variant="contained"
-          href={`${process.env.PUBLIC_URL}/test.txt`}
-          download
-        >
-          Download
-        </Button>
-      </CTACard>
+      {/*<CTACard>*/}
+      {/*  <span>*/}
+      {/*    <h2>Download example</h2>*/}
+      {/*    <p>*/}
+      {/*      To follow along download the example. Need&nbsp;*/}
+      {/*      <Link to="../getting-started">help</Link>?*/}
+      {/*    </p>*/}
+      {/*  </span>*/}
+      {/*  <Button*/}
+      {/*    component="a"*/}
+      {/*    color="primary"*/}
+      {/*    variant="contained"*/}
+      {/*    href={`${process.env.PUBLIC_URL}/test.txt`}*/}
+      {/*    download*/}
+      {/*  >*/}
+      {/*    Download*/}
+      {/*  </Button>*/}
+      {/*</CTACard>*/}
 
     </>
   );

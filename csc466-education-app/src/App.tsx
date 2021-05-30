@@ -30,6 +30,9 @@ const theme = createMuiTheme({
       dark: "#005005",
       contrastText: "#000",
     },
+    background: {
+      paper: "#f3f0e8"
+    }
   },
 });
 
@@ -45,15 +48,12 @@ function App() {
             <Route path="/introduction" component={Introduction} />
             <Route path="/getting-started" component={GettingStarted} />
             <Route path="/preliminary-skills" component={PreliminarySkills} />
-
-            <Route path="/example/1" component={ExampleHolder} />
-            <Route path="/example/2" component={ExampleHolder} />
-            <Route path="/example" component={ExampleList} />
+            <Route exact path="/examples" component={ExampleList} />
 
             <Route path="/example-markdown">
               <Markdown fileName={"running-code"}/>
             </Route>
-            <Route path="/heart-disease">
+            <Route path={["/heart-disease", "/example/1"]}>
               <Markdown
                 fileName={"heart_decision_tree_classifier"}
                 version="cleaned"

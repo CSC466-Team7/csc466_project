@@ -11,7 +11,9 @@ import dark from "react-syntax-highlighter/dist/esm/styles/prism/material-dark";
 // @ts-ignore
 import rehypeRaw from "rehype-raw";
 import { DATASET_ASSETS_URL, MARKDOWN_ASSETS_URL } from "../constants";
+// @ts-ignore
 import remarkMath from "remark-math";
+// @ts-ignore
 import rehypeKatex from "rehype-katex";
 import "katex/dist/katex.min.css"; // rehype-katex does not import the CSS for you
 import "./Markdown.scss";
