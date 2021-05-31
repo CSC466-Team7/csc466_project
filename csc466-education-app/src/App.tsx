@@ -48,10 +48,16 @@ function App() {
             <Route path="/getting-started" component={GettingStarted} />
             <Route path="/preliminary-skills" component={PreliminarySkills} />
             <Route exact path="/tutorials" component={Tutorials} />
-            
             <Route path={["/heart-disease", "/example/1"]}>
               <Markdown
                 fileName={"heart_decision_tree_classifier"}
+                version="cleaned"
+                dataset="heart.csv"
+              />
+            </Route>
+            <Route path={["/sklearn-classifier", "/example/2"]}>
+              <Markdown
+                fileName={"heart-classifier-with-sklearn"}
                 version="cleaned"
                 dataset="heart.csv"
               />

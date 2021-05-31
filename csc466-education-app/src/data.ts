@@ -22,15 +22,15 @@ export const tutorials = [{
   linkTo: "/example/1"
 }, {
   img: {
-    url: "https://miro.medium.com/max/781/1*fGX0_gacojVa6-njlCrWZw.png",
-    title: "Decision Tree Visual"
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/1200px-Scikit_learn_logo_small.svg.png",
+    title: "Scitkit Learn Logo"
   },
   content: {
-    title: "Decision Tree Algorithm",
+    title: "Scikit Learn Classifier",
     description:
-      "Learn how to implement a decision tree from scratch with Python"
+      "Using the decision tree classifier we implemented in the previous tutorial, we can transform that into a classifier that works with sklearn"
   },
-  linkTo: "/example/1"
+  linkTo: "/sklearn-classifier"
 }];
 
 export const skills = [
