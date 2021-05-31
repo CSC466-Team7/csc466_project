@@ -48,7 +48,7 @@ export default function CTACard(props: CTAProps) {
         href={props.linkTo}
       >
         {props.buttonText}
-        {(hovering || props.secondary) && <KeyboardArrowRightOutlined/>}
+        <KeyboardArrowRightOutlined/>
       </Button>
     </Paper>
   );

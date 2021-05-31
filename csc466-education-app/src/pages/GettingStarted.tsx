@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Article from "../components/Article";
 import CTACard from "../components/CTACard";
 
 export default function Introduction() {
@@ -7,13 +8,13 @@ export default function Introduction() {
     <>
       <section>
         <h1>Getting Started</h1>
-        <p>Here's what you'll need to follow along with the examples</p>
+        <p>Here's what you'll need to follow along with the tutorials</p>
       </section>
       
-      <article>
+      <Article>
         <h2>Learning about Decision Trees</h2>
         <p>
-          The <Link to="example">examples</Link> on this site are set up in
+          The <Link to="tutorials">tutorials</Link> on this site are set up in
           such a way that, by following along, you will learn many of the
           concepts behind decision trees. This is reflective of Cal Poly's
           "Learn by Doing" methodology, which (through personal observation)
@@ -26,10 +27,10 @@ export default function Introduction() {
           you're completely unfamiliar with decision trees, you should&nbsp;
           <Link to="introduction">start here</Link> to get a high level
           overview of what we're trying to accomplish with these. Otherwise,
-          keep on reading to see how to follow along with the examples!
+          keep on reading to see how to follow along with the tutorials!
         </p>
         
-        <h2>Running an Example</h2>
+        <h2>Running a tutorial</h2>
         <p>
           Before we're able to work on an actual example, you must first&nbsp;
           <a
@@ -47,11 +48,11 @@ export default function Introduction() {
           to guide you down the right path while building working decision
           trees!
         </p>
-      </article>
+      </Article>
       <CTACard
-        title={"Working with Examples"}
+        title={"Working with Tutorials"}
         description="Now that you know how to get them going, it's time to get your hands dirty with code!"
-        buttonText="Examples" linkTo="/#/examples"
+        buttonText="Examples" linkTo="/#/tutorials"
         secondary={true}
       />
     

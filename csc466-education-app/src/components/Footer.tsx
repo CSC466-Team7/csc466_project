@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
 
         <div className={classes.linkTag}>
-          <h3>Examples</h3>
+          <h3>Tutorials</h3>
           <Link to='/example/1'>Example #1</Link>
           <Link to='/example/2'>Example #2</Link>
         </div>

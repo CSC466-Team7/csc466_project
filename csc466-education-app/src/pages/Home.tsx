@@ -1,15 +1,10 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia
-} from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import React from "react";
 
 import CTACard from "../components/CTACard";
+import CustomCard from "../components/CustomCard";
 import Gallery from "../components/Gallery";
+import TutorialList from "../components/TutorialList";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -56,6 +51,18 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function Home() {
   const classes = useStyles();
+  const cardDetails = {
+    img: {
+      url: "https://miro.medium.com/max/781/1*fGX0_gacojVa6-njlCrWZw.png",
+      title: "Decision Tree Visual"
+    },
+    content: {
+      title: "Decision Tree Algorithm",
+      description:
+        "Learn how to implement a decision tree from scratch with Python"
+    },
+    linkTo: "/#/example/1"
+  };
   
   return (
     <>
@@ -83,52 +90,11 @@ export default function Home() {
       
       <section>
         <h2>Want to put it into practice?</h2>
-        <p>Follow the guides below to implement and test powerful machine learning models to
+        <p>Follow the guides below to implement and test powerful machine
+          learning models to
           better understand decision trees</p>
       </section>
-      <Gallery>
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="https://placekitten.com/640/360"
-            title="placeholder image"
-          />
-          <CardContent>
-            <h3>[Example 1]</h3>
-            <p>Description of [Example 1]</p>
-          </CardContent>
-          <CardActions>
-            <Button
-              color="primary"
-              variant="contained"
-              href="/#/example/1"
-            >
-              See Example #1
-            </Button>
-          </CardActions>
-        </Card>
-        
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.media}
-            image="https://placekitten.com/640/360"
-            title="placeholder image"
-          />
-          <CardContent>
-            <h3>[Example 2]</h3>
-            <p>Description of [Example 2]</p>
-          </CardContent>
-          <CardActions>
-            <Button
-              color="primary"
-              variant="contained"
-              href="/#/example/2"
-            >
-              See Example #2
-            </Button>
-          </CardActions>
-        </Card>
-      </Gallery>
+      <TutorialList/>
     </>
   );
 }

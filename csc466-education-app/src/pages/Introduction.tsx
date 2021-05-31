@@ -1,4 +1,6 @@
+import { Paper } from "@material-ui/core";
 import React from "react";
+import Article from "../components/Article";
 import CTACard from "../components/CTACard";
 
 export default function Introduction() {
@@ -9,7 +11,7 @@ export default function Introduction() {
         <p>What are decision trees? What can they be used for?</p>
       </section>
       
-      <article>
+      <Article>
         <h2>At a high level</h2>
         <p>
           Decision trees provide an easy-to-follow model for making a prediction
@@ -194,7 +196,7 @@ export default function Introduction() {
           can handle this best by limiting the depth of our tree or reducing
           the amount of features we use.
         </p>
-      </article>
+      </Article>
       <CTACard
         title="Practice time"
         description="If you're ready, see how to get hands on experience with some examples"
