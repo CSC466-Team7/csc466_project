@@ -1,176 +1,110 @@
+# Creating a Scikit-Learn Classifer
+
+### API required to become an estimator
+
+- Class should provide:
+  - a `fit()`
+    - Given data (features) and target, fits the model to make predictions based on given data
+  - a `predict()`
+    - Given data (features), returns array of predictions for each observation based on test data in `fit()`
+  - a `constructor` (`__init__()`)
+    - Can supply default arguments here and does any initialization required
+  
+- Can provide other useful methods like:
+ - `predict_proba()`
+ - `score()`
+
+For more information, go to [scikit-learn's website](https://scikit-learn.org/stable/developers/develop.html#apis-of-scikit-learn-objects)
+
+## Creating our `CustomDecisionTreeClassifier` class
+
+Our custom decision tree classifier, which we implemented [here](https://csc466-team7.github.io/csc466_project/#/example/1), needs to be turned into a class. From there, we will add required sklearn estimator checks so that the `check_estimator()` function passes when given our model. This means sklearn has deemed our estimator correct in terms of having the necessary functionality and basic checks to use it as a classifier.
+
+Let's get started by making a class that extends `BaseEstimator` and `ClassifierMixin`, which both provide some helpful functions.
+
 ```python
 class CustomDecisionTreeClassifier(BaseEstimator, ClassifierMixin):
     def __init__(self, criterion='entropy',default=None):
         self.criterion = criterion
         self.default = default
-    
+        
     # Needed for check_estimator
     def _more_tags(self):
         return {
             "poor_score": True
         }
-    
-    def fit(self, X, y):
-        if hasattr(X, 'columns'):
-            self.cols_ = X.columns
-        else:
-            self.cols_ = None
-        
-        X, y = check_X_y(X, y)
-        
-        check_classification_targets(y)
-        
-        self.classes_ = np.unique(y)
-        
-        self.X_ = X
-        self.y_ = y
-        
-        # https://github.com/scikit-learn/scikit-learn/blob/053d2d1af477d9dc17e69162b9f2298c0fda5905/sklearn/tree/_classes.py#L83
+```
 
-        X = np.copy(X)
-        y = np.copy(y)
+We have only written an `entropy` function previously, but if we wanted to have other ways of determining information gain, we could specify it with the `criterion` attribute, as the `DecisionTreeClassifier` sklearn provides does.
 
-        n_samples, self.n_features_in_ = X.shape
-        
-        X = np.atleast_2d(X)
-        y = np.atleast_1d(y)
+We also provide a `default` value for which the user can give to put as the default prediction to use if we make it to a point where the features given create a circumstance where no branch in the decision tree exists.
 
-        self.n_outputs_ = 1
+The `_more_tags()` method is provided here with a return dictionary of `poor_score = True` to let sklearn know that our decision tree may be a poor predictor and that's ok. This is because our decision tree is not effective for quanititative data that sklearn may pass as tests for our classifier. We can make a classifier that does handle continuous variables, though. We have not done that here.
 
-        start_idxs = np.asarray(list(range(self.n_features_in_)))
-        self._tree = self._make_tree(X, y, start_idxs)
-        self._rules = self._get_rules(self._tree)
+### Writing fit/predict
 
-        return self
-    
-    def predict(self, X):
-        # Check is fit had been called
-        check_is_fitted(self)
-        # Input validation
-        X = check_array(X)
-        
-        if X.shape[1] != self.n_features_in_:
-            raise ValueError("Features in predict different than features in fit")
-        
-        default = self.y_[0] if self.default == None else self.default
-        
-        y_vals = []
-        for x in X:
-            y_vals.append(self._make_prediction(self._rules,x,default))
-        
-        return np.asarray(y_vals)
+So what changes here?
 
-    def _get_entropy(self, y):
-        e = 0
-        for v in np.unique(y):
-            p_v = np.sum(y == v) / len(y)
-            total = -1 * (p_v * np.log2(p_v))
-            e += total
-        return e
-    
-    def _gain(self, y,x):
-        g = 0
-        for v in np.unique(x):
-            sub_t = y[np.where(x == v)]
-            g += (len(sub_t) / len(y)) * self._get_entropy(sub_t)
-        return self._get_entropy(y) - g
-        
-    
-    # use counts in case of tie
-    def _high_freq_class(self, y):
-        # https://stackoverflow.com/questions/6252280/find-the-most-frequent-number-in-a-numpy-array
-#         y_counts = np.bincount(y)
-#         y_vals = np.where(y_counts == y_counts.max())[0]
-#         numpy.argsort(vals)
-        u, c = np.unique(y, return_counts = True)
-        temp = u[c == c.max()]
-        return temp[0]
+Well, `fit()` will do some of the transformations and checks required and then will call our `tree_creation` function to train our classifier from the given training data and `make_rules` to be ready to make predicitions from.
 
-    def _make_tree(self,X,y,related_idxs):
-        if len(np.unique(y)) == 1:
-            return y[0]
+The `predict()` will also do some transformations and checks and then will call our `make_predictions` function on the given dataset.
 
-        if X.shape[1] == 0:
-            return self._high_freq_class(y)
+## The hard part
 
-        tree = {}
-        
-        # Find best split
-        col = None
-        gr = -1
-        for c in range(X.shape[1]):
-            cur_gain_ratio = self._gain(y, X[:, c])
-            if cur_gain_ratio > gr:
-                gr = cur_gain_ratio
-                col = c
-    
-    
-        correct_col = related_idxs[col]
-        tree[correct_col] = {}
+Now here might be some hard news.
 
-        if gr == 0:
-            return self._high_freq_class(y)
-        
-        X_col = X[:, col]
-        unique_vals = np.unique(X_col)
+*We are not guaranteed to be passed a **pandas DataFrame** as the X (training set) variable to fit or predict*.
 
-        for v in unique_vals:
-            assert(X_col.ndim == 1)
-            indexes = np.where(X_col == v)
-            new_X = X[indexes[0], :]
-            new_X = np.delete(new_X, col, axis=1)
-            new_y = y[indexes]
-            new_valid_idxs = np.delete(related_idxs, col, axis=0)
-            tree[correct_col][str(v)] = self._make_tree(new_X,new_y,new_valid_idxs)
+We will assume that we do get at least a 2D matrix that corresponds to a dataframe, though, and a 1D matrix that corresponds to the targets for each observation. This means we cannot rely on `X.columns` to get the columns out of a dataframe and can really only use `numpy` functions during this OR turn it into a `pandas` dataframe ourselves. For this exercise, we used `numpy` functions.
 
-        return tree
-    
-    def _get_rules(self, tree):
-        rules = []
-        if type(tree) != dict:
-            return [[tree]]
-        for col in tree:
-            for val in tree[col]:
-                tup = (col, val)
-                generated_sub_rules = self._get_rules(tree[col][val])
-                for sub_rule in generated_sub_rules:
-                    new_rule = [tup]
-                    new_rule.extend(sub_rule)
-                    rules.append(new_rule)
+Luckily, sklearn does provide some functions we can use during `fit()` and `predict()` to help do some checks and shaping for us:
 
-        return rules
+- `fit()`
+  - `check_X_y(X, y)` - Given `X` and `y`, returns a numpy array for each instead, even if input is `pandas DataFrame` or `Series`
+  - `check_classification_targets(y)` - Makes sure values in given `y` lead to a classification problem
+  - `np.atleast_2d(X)` and `np.atleast_1d(y)` - checks and coerces given matrix to dimension specified
+- `predict()`
+  - `check_is_fitted(self)` - makes sure model has been `fit()`
+  - `check_array(X)` - From sklearn: "By default, the input is checked to be a non-empty 2D array containing only finite values"
+  
+### But what if we used DataFrame `columns` to pick certain columns or generate rules?
 
-    def _eq_rule(self, val_to_match):
-        def eq_matcher(x):
-            return x[0][1] == str(val_to_match)
-        
-        return eq_matcher
+All is not lost! One way to go about this is to convert the `numpy` arrays to a DataFrame with named columns of your own. This is the easy lame way :D.
 
-    # Used to make a prediction given a decision tree's rule and some inputs
-    def _make_prediction(self, rules,x,default):
-        if len(rules) == 0:
-            return default
 
-        tups = []
-        next_rule = rules[0][0]
+Another way is to just keep track of the current indexes of the columns you still have during tree creation. Thus, the starting indexes to `generate_tree` would be
+```python
+np.asarray(list(range(self.n_features_in_)))
+```
+where `self.n_features_in_ = X.shape[1]`. This is because we start with all indexes at first, which is just all the features' indexes. On subsequent calls to `generate_tree`, we can pass indexes that relate to the original indexes with all the features.
 
-        if type(next_rule) != tuple:
-            return next_rule
+Let's say we have a decision tree with features: Ethnicity, Age, and Height. Then we pick Age as our best feature (highest info gain). That means we will pass Ethnicity and Height as a new subtree to make. To start, the indexes would have been `0, 1, and 2`. The subtree would get indexes `0 and 2` then.
+  - `0 -> Ethnicity`
+  - `1 -> Age`
+  - `2 -> Height`
+  
+Thus the function definition for the `_tree_creation` in your class may look like:
+```python
+def _tree_creation(self,X,y,related_idxs):
+```
 
-        col = next_rule[0]
+and will still return a dictionary **where instead of column names you get indexes**.
 
-        matching_value = x[col]
-        filter_rule = self._eq_rule(matching_value)
 
-        viable_rules = list(filter(filter_rule, rules))
+Some helpful `numpy` functions for dealing with `numpy` arrays:
+- `unique(y)` - returns only unique values. Can also return indexes and counts as well!
+- `where(condition)` - Given condition traverses array and returns indexes that satisfy condition. Helpful for subsetting based on condition. Can be used similarly to `df[z == 2]` (`np.where(z == 2)` where `z` is numpy array)
+- `delete(y, value(s), axis)` - returns new numpy array with value(s) deleted along that axis. If you have 2D matrix and want to delete a column, can do: `np.delete(X, column, axis=1)`
+- `numpy` arrays can be subsetted like `pandas Series` can be. `X[:, col]` selects all observations in the 2D matrix `X` at column `col`.
 
-        if len(viable_rules) == 0:
-            return default
 
-        new_rules = list(map(lambda x: x[1:], viable_rules))
+#### The nice part about all of this is that the `generate_rules` function really doesn't have to change since the given tree is still just a dictionary.
 
-        return self._make_prediction(new_rules, x, default)
-    
+### Printing it out with column names
+
+Since we know only have indexes in our tree, if we received a `DataFrame` with columns during fitting, we may want to also print our tree with columns. Here's a helper function to do that:
+
+```python
     def print_decision_tree(self, with_cols=False):
         try:
             getattr(self, "_tree")
@@ -201,11 +135,25 @@ class CustomDecisionTreeClassifier(BaseEstimator, ClassifierMixin):
         print(json.dumps(mytree, indent=4, sort_keys=True))
 ```
 
+But where does `self.cols_` come from to do this? You can add a way to grab the columns in fit:
+```python
+if hasattr(X, 'columns'):
+    self.cols_ = X.columns
+else:
+    self.cols_ = None
+```
+
+then all we have to do is call the print correctly:
+```python
+model.print_decision_tree(with_cols=True)
+```
+
+### Now let's check out if our estimator works with the heart dataset again. We should get the same scores!
+
+Once again we will sklearn's `train_test_split` and `accuracy_score` and `f1_score`
+
 
 ```python
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, f1_score
-
 X2_train, X2_test, t_train, t_test = train_test_split(X2, t, test_size=0.3, random_state = 0)
 
 clf = CustomDecisionTreeClassifier(default=1)
@@ -219,9 +167,13 @@ print(f'F1 score: {f1_score(y_test, t_test)}')
     F1 score: 0.7999999999999999
 
 
+Sweet! If you remember the implementation guide for ID3 classifier, those scores are **exactly the same** as what sklearn's `DecisionTreeClassifier` gives back!
+
+### Alright, final check! Let's see if our custom classifier passes as a classifier according to sklearn!
+
+Run `check_estimator` with an instantiation. **_No output is good output!_**
+
 
 ```python
-from sklearn.utils.estimator_checks import check_estimator
-from sklearn.tree import DecisionTreeClassifier
 check_estimator(CustomDecisionTreeClassifier())
 ```
