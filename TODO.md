@@ -1,0 +1,3 @@
+- Fix footer links
+- Fix download links
+- Add tutorials for gini index, min_split_count, and boosting if time permits

@@ -41,7 +41,8 @@ export interface CardProps {
     title: string,
     description: string
   },
-  linkTo: string
+  linkTo?: string,
+  notebook?: string
 }
 
 export default function CustomCard(props: CardProps) {
@@ -59,27 +60,27 @@ export default function CustomCard(props: CardProps) {
         <p>{props.content.description}</p>
       </CardContent>
       <CardActions>
-        {props.linkTo.includes("http") ?
-          <Button
-            color="primary"
-            variant="contained"
-            href={props.linkTo}
-            style={{margin: 10}}
-            target="_blank"
-          >
-            View Tutorial
-            <OpenInNew/>
-          </Button> :
-          <Button
-            component={Link}
-            color="primary"
-            variant="contained"
-            to={props.linkTo}
-            style={{margin: 10}}
-          >
-            View Tutorial
-            <KeyboardArrowRightOutlined/>
-          </Button>}
+        {/*If external link...*/}
+        {props.linkTo &&
+        <Button
+          color="primary"
+          variant="contained"
+          href={props.linkTo}
+          style={{margin: 10}}
+          target="_blank">
+          View Tutorial
+          <OpenInNew/>
+        </Button>}
+        {/*If link to notebook...*/}
+        {props.notebook && <Button
+          component={Link}
+          color="primary"
+          variant="contained"
+          to={`/${props.notebook}`}
+          style={{margin: 10}}>
+          View Tutorial
+          <KeyboardArrowRightOutlined/>
+        </Button>}
       
       </CardActions>
     </Card>

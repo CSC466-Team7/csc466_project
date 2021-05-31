@@ -1,37 +1,44 @@
-export const tutorials = [{
-  img: {
-    url: "https://miro.medium.com/max/781/1*fGX0_gacojVa6-njlCrWZw.png",
-    title: "Decision Tree Visual"
+export const tutorials = [
+  /*Decision Tree Algorithm*/
+  {
+    img: {
+      url: "https://miro.medium.com/max/781/1*fGX0_gacojVa6-njlCrWZw.png",
+      title: "Decision Tree Visual"
+    },
+    content: {
+      title: "Decision Tree Algorithm",
+      description:
+        "Learn how to implement a decision tree from scratch with Python"
+    },
+    notebook: "heart-classifier-with-sklearn"
   },
-  content: {
-    title: "Decision Tree Algorithm",
-    description:
-      "Learn how to implement a decision tree from scratch with Python"
+  /*Scikit Learn Classifier*/
+  {
+    img: {
+      url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/1200px-Scikit_learn_logo_small.svg.png",
+      title: "Scitkit Learn Logo"
+    },
+    content: {
+      title: "Scikit Learn Classifier",
+      description:
+        "Using the decision tree classifier we implemented in the previous tutorial, we can transform that into a classifier that works with sklearn"
+    },
+    notebook: "heart_decision_tree_classifier"
   },
-  linkTo: "/example/1"
-}, {
-  img: {
-    url: "https://miro.medium.com/max/781/1*fGX0_gacojVa6-njlCrWZw.png",
-    title: "Decision Tree Visual"
-  },
-  content: {
-    title: "Decision Tree Algorithm",
-    description:
-      "Learn how to implement a decision tree from scratch with Python"
-  },
-  linkTo: "/example/1"
-}, {
-  img: {
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Scikit_learn_logo_small.svg/1200px-Scikit_learn_logo_small.svg.png",
-    title: "Scitkit Learn Logo"
-  },
-  content: {
-    title: "Scikit Learn Classifier",
-    description:
-      "Using the decision tree classifier we implemented in the previous tutorial, we can transform that into a classifier that works with sklearn"
-  },
-  linkTo: "/sklearn-classifier"
-}];
+  /*Bagging and Random Forests*/
+  {
+    img: {
+      url: "https://miro.medium.com/max/1052/1*VHDtVaDPNepRglIAv72BFg.jpeg",
+      title: "Random Forests"
+    },
+    content: {
+      title: "Bagging and Random Forests",
+      description:
+        "Using what we know about decision trees, learn how to make more" +
+        " powerful models by leveraging bagging and random forests"
+    },
+    notebook: "bagging_and_random_forests"
+  }];
 
 export const skills = [
   {

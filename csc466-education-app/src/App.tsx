@@ -3,6 +3,7 @@ import { Switch, Route, HashRouter } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core/";
 import Markdown from "./components/Markdown";
+import { tutorials } from "./data";
 
 import Home from "./pages/Home";
 import Introduction from "./pages/Introduction";
@@ -48,20 +49,15 @@ function App() {
             <Route path="/getting-started" component={GettingStarted} />
             <Route path="/preliminary-skills" component={PreliminarySkills} />
             <Route exact path="/tutorials" component={Tutorials} />
-            <Route path={["/heart-disease", "/example/1"]}>
-              <Markdown
-                fileName={"heart_decision_tree_classifier"}
-                version="cleaned"
-                dataset="heart.csv"
-              />
-            </Route>
-            <Route path={["/sklearn-classifier", "/example/2"]}>
-              <Markdown
-                fileName={"heart-classifier-with-sklearn"}
-                version="cleaned"
-                dataset="heart.csv"
-              />
-            </Route>
+            {tutorials.map((tutorial) =>
+              <Route path={`/${tutorial.notebook}`}>
+                <Markdown
+                  fileName={tutorial.notebook}
+                  version="cleaned"
+                  dataset="heart.csv" // TODO: What id no dataset?
+                />
+              </Route>
+            )}
           </Switch>
         </Container>
         <Footer />
