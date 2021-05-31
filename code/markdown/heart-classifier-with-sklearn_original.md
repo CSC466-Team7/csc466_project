@@ -495,9 +495,10 @@ class CustomDecisionTreeClassifier(BaseEstimator, ClassifierMixin):
         except AttributeError:
             raise RuntimeError("You must train classifer before printing tree!")
             
-        self._print_tree_helper(self._tree, with_cols)
-            
-    def _print_tree_helper(self, tree, replace_cols):
+        CustomDecisionTreeClassifier._print_tree_helper(self._tree, with_cols, self.cols_)
+    
+    @staticmethod
+    def _print_tree_helper(tree, replace_cols, cols = None):
         mytree = copy.deepcopy(tree)
         def fix_keys(tree):
             if type(tree) != dict:
@@ -507,7 +508,7 @@ class CustomDecisionTreeClassifier(BaseEstimator, ClassifierMixin):
             for key in list(tree.keys()):
                 if type(key) == np.int64 or type(key) == np.int32:
                     if replace_cols:
-                        new_tree[self.cols_[int(key)]] = tree[key]
+                        new_tree[cols[int(key)]] = tree[key]
                     else:
                         new_tree[int(key)] = tree[key]
                 else:
@@ -545,6 +546,365 @@ print(f'F1 score: {f1_score(y_test, t_test)}')
     Accuracy: 0.7912087912087912
     F1 score: 0.7999999999999999
 
+
+### Let's see the decision tree with the columns and indexes next to them as an example of what happens
+
+First a table of the indexes!
+
+
+```python
+def print_decision_tree_custom(tree_model):
+    new_cols = []
+    for i, col in enumerate(tree_model.cols_):
+        new_cols.append(f"{col}/{i}")
+        
+    CustomDecisionTreeClassifier._print_tree_helper(tree_model._tree, True, new_cols)
+    
+def print_index_table(tree_model):
+    return pd.DataFrame(list(range(tree_model.n_features_in_)), index=tree_model.cols_, columns=["Column Index"])
+```
+
+
+```python
+print_index_table(clf)
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Column Index</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>sex</th>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>cp</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>fbs</th>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>restecg</th>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>exang</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>slope</th>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>ca</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>thal</th>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+```python
+print_decision_tree_custom(clf.fit(X2_train, t_train))
+```
+
+    {
+        "thal/7": {
+            "0": {
+                "sex/0": {
+                    "0": 1,
+                    "1": 0
+                }
+            },
+            "1": {
+                "ca/6": {
+                    "0": {
+                        "restecg/3": {
+                            "0": 1,
+                            "1": {
+                                "slope/5": {
+                                    "0": 0,
+                                    "1": 0
+                                }
+                            }
+                        }
+                    },
+                    "1": 0,
+                    "2": 0,
+                    "3": 0
+                }
+            },
+            "2": {
+                "ca/6": {
+                    "0": {
+                        "restecg/3": {
+                            "0": {
+                                "cp/1": {
+                                    "0": {
+                                        "slope/5": {
+                                            "1": 1,
+                                            "2": {
+                                                "sex/0": {
+                                                    "0": 1,
+                                                    "1": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "1": {
+                                        "sex/0": {
+                                            "0": 1,
+                                            "1": {
+                                                "slope/5": {
+                                                    "1": 0,
+                                                    "2": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "2": 1,
+                                    "3": {
+                                        "sex/0": {
+                                            "0": 1,
+                                            "1": {
+                                                "exang/4": {
+                                                    "0": 0,
+                                                    "1": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "1": {
+                                "cp/1": {
+                                    "0": {
+                                        "exang/4": {
+                                            "0": 1,
+                                            "1": {
+                                                "slope/5": {
+                                                    "1": 0,
+                                                    "2": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "1": 1,
+                                    "2": {
+                                        "sex/0": {
+                                            "0": 1,
+                                            "1": {
+                                                "exang/4": {
+                                                    "0": {
+                                                        "slope/5": {
+                                                            "0": 1,
+                                                            "1": 0,
+                                                            "2": 1
+                                                        }
+                                                    },
+                                                    "1": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "3": 1
+                                }
+                            },
+                            "2": {
+                                "cp/1": {
+                                    "0": 0,
+                                    "2": 1
+                                }
+                            }
+                        }
+                    },
+                    "1": {
+                        "cp/1": {
+                            "0": 0,
+                            "1": 1,
+                            "2": 1,
+                            "3": 0
+                        }
+                    },
+                    "2": {
+                        "exang/4": {
+                            "0": {
+                                "fbs/2": {
+                                    "0": {
+                                        "sex/0": {
+                                            "0": 1,
+                                            "1": {
+                                                "restecg/3": {
+                                                    "0": 1,
+                                                    "1": 0
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "1": 0
+                                }
+                            },
+                            "1": 0
+                        }
+                    },
+                    "3": {
+                        "cp/1": {
+                            "0": 0,
+                            "2": {
+                                "fbs/2": {
+                                    "0": 0,
+                                    "1": 1
+                                }
+                            }
+                        }
+                    },
+                    "4": 1
+                }
+            },
+            "3": {
+                "cp/1": {
+                    "0": {
+                        "ca/6": {
+                            "0": {
+                                "slope/5": {
+                                    "0": 0,
+                                    "1": 0,
+                                    "2": {
+                                        "restecg/3": {
+                                            "0": {
+                                                "exang/4": {
+                                                    "0": 0,
+                                                    "1": 0
+                                                }
+                                            },
+                                            "1": {
+                                                "exang/4": {
+                                                    "0": 1,
+                                                    "1": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "1": {
+                                "slope/5": {
+                                    "1": {
+                                        "restecg/3": {
+                                            "0": 0,
+                                            "1": {
+                                                "exang/4": {
+                                                    "0": 0,
+                                                    "1": 0
+                                                }
+                                            },
+                                            "2": 0
+                                        }
+                                    },
+                                    "2": 0
+                                }
+                            },
+                            "2": 0,
+                            "3": 0,
+                            "4": 0
+                        }
+                    },
+                    "1": {
+                        "slope/5": {
+                            "0": 0,
+                            "1": 1,
+                            "2": {
+                                "fbs/2": {
+                                    "0": {
+                                        "restecg/3": {
+                                            "0": 1,
+                                            "1": 0
+                                        }
+                                    },
+                                    "1": 1
+                                }
+                            }
+                        }
+                    },
+                    "2": {
+                        "slope/5": {
+                            "1": {
+                                "ca/6": {
+                                    "0": {
+                                        "exang/4": {
+                                            "0": 1,
+                                            "1": {
+                                                "fbs/2": {
+                                                    "0": {
+                                                        "restecg/3": {
+                                                            "0": 1,
+                                                            "1": 0
+                                                        }
+                                                    },
+                                                    "1": 0
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "1": 0,
+                                    "3": 0
+                                }
+                            },
+                            "2": 1
+                        }
+                    },
+                    "3": {
+                        "fbs/2": {
+                            "0": {
+                                "restecg/3": {
+                                    "0": 1,
+                                    "1": {
+                                        "slope/5": {
+                                            "1": 0,
+                                            "2": 1
+                                        }
+                                    }
+                                }
+                            },
+                            "1": 1
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+We can see that `thal`, which is columns number 7, is the most important feature according to our deicison tree. If `thal` is 0, then `sex`, column number 0, is our next most important feature for the subtree. The actual tree that gets produced, if just using indexes, will just have a `7` instead of `thal` if the column names are not replaced. This is just a visualization of how the conversion can be done eaisly.
 
 Sweet! If you remember the implementation guide for ID3 classifier, those scores are **exactly the same** as what sklearn's `DecisionTreeClassifier` gives back!
 
