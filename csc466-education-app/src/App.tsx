@@ -7,8 +7,7 @@ import Markdown from "./components/Markdown";
 import Home from "./pages/Home";
 import Introduction from "./pages/Introduction";
 import GettingStarted from "./pages/GettingStarted";
-import ExampleList from "./pages/examples/ExampleList";
-import ExampleHolder from "./pages/examples/Holder";
+import Tutorials from "./pages/Tutorials";
 import PreliminarySkills from "./pages/PreliminarySkills";
 
 import Navbar from "./components/Navbar";
@@ -30,6 +29,9 @@ const theme = createMuiTheme({
       dark: "#005005",
       contrastText: "#000",
     },
+    background: {
+      paper: "#f3f0e8"
+    }
   },
 });
 
@@ -45,15 +47,9 @@ function App() {
             <Route path="/introduction" component={Introduction} />
             <Route path="/getting-started" component={GettingStarted} />
             <Route path="/preliminary-skills" component={PreliminarySkills} />
-
-            <Route path="/example/1" component={ExampleHolder} />
-            <Route path="/example/2" component={ExampleHolder} />
-            <Route path="/example" component={ExampleList} />
-
-            <Route path="/example-markdown">
-              <Markdown fileName={"running-code"}/>
-            </Route>
-            <Route path="/heart-disease">
+            <Route exact path="/tutorials" component={Tutorials} />
+            
+            <Route path={["/heart-disease", "/example/1"]}>
               <Markdown
                 fileName={"heart_decision_tree_classifier"}
                 version="cleaned"

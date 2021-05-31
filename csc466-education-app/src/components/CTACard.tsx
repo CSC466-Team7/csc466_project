@@ -1,5 +1,8 @@
-import React from "react";
+import { Button, Paper } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { KeyboardArrowRightOutlined } from "@material-ui/icons";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -8,25 +11,46 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: "space-between",
       alignItems: "center",
       flexWrap: "wrap",
-      margin: "60px auto",
+      margin: "25px auto",
       width: "80%",
       padding: "12px 20px",
-      backgroundColor: "#eeeef0",
-      borderRadius: "4px",
-    },
-  }),
+      backgroundColor: theme.palette.background.paper
+    }
+  })
 );
 
 interface CTAProps {
-  children: React.ReactNode,
+  title: string,
+  description: string,
+  buttonText: string,
+  linkTo: string,
+  secondary? : boolean
 }
 
 export default function CTACard(props: CTAProps) {
+  const [hovering, setHovering] = useState(false);
   const classes = useStyles();
-
+  
   return (
-    <div className={classes.card}>
-      {props.children}
-    </div>
+    <Paper
+      className={classes.card}
+      elevation={hovering ? 24 : 6}
+      variant={props.secondary ? "outlined" : "elevation"}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}>
+      <div>
+        <h2>{props.title}</h2>
+        <p>{props.description}</p>
+      </div>
+      <Button
+        component={Link}
+        color="primary"
+        variant="contained"
+        to={props.linkTo}
+      >
+        {props.buttonText}
+        <KeyboardArrowRightOutlined/>
+      </Button>
+    </Paper>
   );
 }

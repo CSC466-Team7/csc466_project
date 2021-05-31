@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
 
         <div className={classes.linkTag}>
-          <h3>Examples</h3>
+          <h3>Tutorials</h3>
           <Link to='/example/1'>Example #1</Link>
           <Link to='/example/2'>Example #2</Link>
         </div>
@@ -66,13 +66,13 @@ export default function Footer() {
         <div className={classes.linkTag}>
           <h3>Resources</h3>
           <Link to='/preliminary-skills'>Preliminary Skills</Link>
-          <a
-            href="https://github.com/CSC466-Team7/csc466_project"
+          <Link
+            to="https://github.com/CSC466-Team7/csc466_project"
             target="_blank"
-            rel="noreferrer"
+            rel="noreferrer noopener"
           >
             GitHub
-          </a>
+          </Link>
         </div>
 
       </div>
