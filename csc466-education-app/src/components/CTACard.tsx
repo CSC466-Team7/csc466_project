@@ -2,6 +2,7 @@ import { Button, Paper } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { KeyboardArrowRightOutlined } from "@material-ui/icons";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,10 +43,10 @@ export default function CTACard(props: CTAProps) {
         <p>{props.description}</p>
       </div>
       <Button
-        component="button"
+        component={Link}
         color="primary"
         variant="contained"
-        href={props.linkTo}
+        to={props.linkTo}
       >
         {props.buttonText}
         <KeyboardArrowRightOutlined/>

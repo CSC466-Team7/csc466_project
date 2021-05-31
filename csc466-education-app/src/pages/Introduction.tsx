@@ -200,7 +200,7 @@ export default function Introduction() {
       <CTACard
         title="Practice time"
         description="If you're ready, see how to get hands on experience with some examples"
-        buttonText="Getting Started" linkTo="/#/getting-started"
+        buttonText="Getting Started" linkTo="/getting-started"
         secondary={true}
       />
     

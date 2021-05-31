@@ -52,7 +52,7 @@ export default function Introduction() {
       <CTACard
         title={"Working with Tutorials"}
         description="Now that you know how to get them going, it's time to get your hands dirty with code!"
-        buttonText="Examples" linkTo="/#/tutorials"
+        buttonText="Examples" linkTo="/tutorials"
         secondary={true}
       />
     

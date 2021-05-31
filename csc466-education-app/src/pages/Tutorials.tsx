@@ -8,8 +8,7 @@ import {
 } from "@material-ui/core";
 
 import Gallery from "../components/Gallery";
-import Card from "../components/CustomCard";
-import TutorialList from "../components/TutorialList";
+import { skills, tutorials } from "../data";
 
 export default function Tutorials() {
   const ex1 = {
@@ -30,8 +29,8 @@ export default function Tutorials() {
           Get into the learn by doing spirit with these walkthrough tutorials.
         </p>
       </section>
-
-      <TutorialList/>
+  
+      <Gallery cards={tutorials}/>
 
       <article>
         <h2>Resources</h2>

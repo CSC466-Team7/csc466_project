@@ -2,9 +2,8 @@ import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import React from "react";
 
 import CTACard from "../components/CTACard";
-import CustomCard from "../components/CustomCard";
 import Gallery from "../components/Gallery";
-import TutorialList from "../components/TutorialList";
+import { tutorials } from "../data";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -76,17 +75,17 @@ export default function Home() {
         title="Not sure where to start?"
         description="Learn how to use the website"
         buttonText="Get Started"
-        linkTo="/#/getting-started"/>
+        linkTo="/getting-started"/>
       <CTACard
         title="New to Decision Trees?"
         description="Learn the theory behind decision trees"
         buttonText="Introduction"
-        linkTo="/#/introduction"/>
+        linkTo="/introduction"/>
       <CTACard
         title="Need a refresher?"
         description="Brush up on your preliminary skills"
         buttonText="Preliminary Skills"
-        linkTo="/#/preliminary-skills"/>
+        linkTo="/preliminary-skills"/>
       
       <section>
         <h2>Want to put it into practice?</h2>
@@ -94,7 +93,7 @@ export default function Home() {
           learning models to
           better understand decision trees</p>
       </section>
-      <TutorialList/>
+      <Gallery cards={tutorials}/>
     </>
   );
 }

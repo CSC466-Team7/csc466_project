@@ -8,6 +8,7 @@ import {
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { KeyboardArrowRightOutlined } from "@material-ui/icons";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-interface CardProps {
+export interface CardProps {
   img: {
     url: string,
     title: string,
@@ -59,9 +60,11 @@ export default function CustomCard(props: CardProps) {
       </CardContent>
       <CardActions>
         <Button
+          component={Link}
           color="primary"
           variant="contained"
-          href={props.linkTo}
+          to={props.linkTo}
+          style={{margin: 10}}
         >
           View Tutorial
           <KeyboardArrowRightOutlined/>
