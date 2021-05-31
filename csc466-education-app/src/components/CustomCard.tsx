@@ -6,7 +6,7 @@ import {
   CardMedia
 } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { KeyboardArrowRightOutlined } from "@material-ui/icons";
+import { KeyboardArrowRightOutlined, OpenInNew } from "@material-ui/icons";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -59,16 +59,28 @@ export default function CustomCard(props: CardProps) {
         <p>{props.content.description}</p>
       </CardContent>
       <CardActions>
-        <Button
-          component={Link}
-          color="primary"
-          variant="contained"
-          to={props.linkTo}
-          style={{margin: 10}}
-        >
-          View Tutorial
-          <KeyboardArrowRightOutlined/>
-        </Button>
+        {props.linkTo.includes("http") ?
+          <Button
+            color="primary"
+            variant="contained"
+            href={props.linkTo}
+            style={{margin: 10}}
+            target="_blank"
+          >
+            View Tutorial
+            <OpenInNew/>
+          </Button> :
+          <Button
+            component={Link}
+            color="primary"
+            variant="contained"
+            to={props.linkTo}
+            style={{margin: 10}}
+          >
+            View Tutorial
+            <KeyboardArrowRightOutlined/>
+          </Button>}
+      
       </CardActions>
     </Card>
   );
