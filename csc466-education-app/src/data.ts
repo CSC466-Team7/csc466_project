@@ -10,7 +10,7 @@ export const tutorials = [
       description:
         "Learn how to implement a decision tree from scratch with Python"
     },
-    notebook: "heart-classifier-with-sklearn"
+    notebook: "heart_decision_tree_classifier"
   },
   /*Scikit Learn Classifier*/
   {
@@ -23,7 +23,7 @@ export const tutorials = [
       description:
         "Using the decision tree classifier we implemented in the previous tutorial, we can transform that into a classifier that works with sklearn"
     },
-    notebook: "heart_decision_tree_classifier"
+    notebook: "heart_classifier_with_sklearn"
   },
   /*Bagging and Random Forests*/
   {

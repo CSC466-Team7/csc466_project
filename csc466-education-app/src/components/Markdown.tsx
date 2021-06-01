@@ -1,9 +1,5 @@
 import { Button, IconButton } from "@material-ui/core";
-import {
-  CloudDownloadOutlined,
-  FileCopy,
-  FontDownloadOutlined, GetApp
-} from "@material-ui/icons";
+import { FileCopy, GetApp } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import "katex/dist/katex.min.css";
@@ -11,6 +7,7 @@ import React, { useEffect, useState } from "react";
 import { Collapse } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import ReactMarkdown from "react-markdown";
+import { Link } from "react-router-dom";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import dark from "react-syntax-highlighter/dist/esm/styles/prism/material-dark";
 // @ts-ignore
@@ -19,9 +16,13 @@ import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 // @ts-ignore
 import remarkMath from "remark-math";
-import { DATASET_ASSETS_URL, MARKDOWN_ASSETS_URL } from "../constants";
-import "./Markdown.scss";
+import {
+  DATASET_ASSETS_URL,
+  MARKDOWN_ASSETS_URL,
+  NOTEBOOK_ASSETS_URL
+} from "../constants";
 import Article from "./Article";
+import "./Markdown.scss";
 
 function CodeComponent(props: any) {
   const [collapsed, setCollapsed] = useState(true);
@@ -62,6 +63,7 @@ function DownloadButton(props: { href: string; children: React.ReactNode; }) {
       variant="contained"
       href={props.href}
       style={{margin: 10}}
+      target={"_blank"}
       download
     >
       <GetApp/>
@@ -74,7 +76,7 @@ export default function Markdown(props: { fileName: string; version?: string; da
   const [markdownAsString, setMarkdownAsString] = useState("");
   
   const fetchMarkdown = async () => {
-    const url = getExpectedFileURL();
+    const url = getCleanedFileURL();
     // Switch when testing locally
     // const file = await
     // import("../markdown/heart_decision_tree_classifier.md"); const toFetch =
@@ -85,12 +87,8 @@ export default function Markdown(props: { fileName: string; version?: string; da
     setMarkdownAsString(resText);
   };
   
-  const getExpectedFileURL = () => {
-    if (props?.version === "original") {
-      return getOriginalFileURL();
-    }
-    
-    return getCleanedFileURL();
+  const getPythonNotebookFileUrl = () => {
+    return `${NOTEBOOK_ASSETS_URL}/${props.fileName}.ipynb`;
   };
   
   const getCleanedFileURL = () => {
@@ -153,8 +151,8 @@ export default function Markdown(props: { fileName: string; version?: string; da
         flexDirection: "row",
         justifyContent: "center"
       }}>
-        <DownloadButton href={getExpectedFileURL()}>
-          Download
+        <DownloadButton href={getPythonNotebookFileUrl()}>
+          Download Python Notebook
         </DownloadButton>
         
         {props?.version === "original" ? (
@@ -167,7 +165,7 @@ export default function Markdown(props: { fileName: string; version?: string; da
           </DownloadButton>
         )}
         
-        {props?.dataset &&
+        {props.dataset &&
         <DownloadButton href={`${DATASET_ASSETS_URL}/${props.dataset}`}>
           Download Dataset
         </DownloadButton>
