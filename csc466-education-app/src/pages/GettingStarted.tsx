@@ -2,15 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Article from "../components/Article";
 import CTACard from "../components/CTACard";
+import Header from "../components/Header";
 
 export default function Introduction() {
   return (
     <>
-      <section>
-        <h1>Getting Started</h1>
-        <p>Here's what you'll need to follow along with the tutorials</p>
-      </section>
-      
+      <Header
+        title={"Getting Started"}
+        description={"Here's what you'll need to follow along with the tutorials"}
+      />
+  
       <Article>
         <h2>Learning about Decision Trees</h2>
         <p>
@@ -52,7 +53,7 @@ export default function Introduction() {
       <CTACard
         title={"Working with Tutorials"}
         description="Now that you know how to get them going, it's time to get your hands dirty with code!"
-        buttonText="Examples" linkTo="/tutorials"
+        buttonText="Tutorials" linkTo="/tutorials"
         secondary={true}
       />
     

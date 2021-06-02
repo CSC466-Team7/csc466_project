@@ -52,9 +52,9 @@ function App() {
             {tutorials.map((tutorial) =>
               <Route path={`/${tutorial.notebook}`}>
                 <Markdown
+                  {...tutorial.content}
                   fileName={tutorial.notebook}
-                  version="cleaned"
-                  dataset="heart.csv" // TODO: What id no dataset?
+                  dataset="heart.csv" // TODO: What if no dataset?
                 />
               </Route>
             )}

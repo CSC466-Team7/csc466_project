@@ -2,14 +2,14 @@ import { Paper } from "@material-ui/core";
 import React from "react";
 import Article from "../components/Article";
 import CTACard from "../components/CTACard";
+import Header from "../components/Header";
 
 export default function Introduction() {
   return (
     <>
-      <section>
-        <h1>Introduction to Decision Trees</h1>
-        <p>What are decision trees? What can they be used for?</p>
-      </section>
+      <Header
+        title={"Introduction to Decision Trees"}
+        description={"What are decision trees? What can they be used for?"}/>
       
       <Article>
         <h2>At a high level</h2>
@@ -199,7 +199,7 @@ export default function Introduction() {
       </Article>
       <CTACard
         title="Practice time"
-        description="If you're ready, see how to get hands on experience with some examples"
+        description="If you're ready, see how to get hands on experience with some tutorials"
         buttonText="Getting Started" linkTo="/getting-started"
         secondary={true}
       />

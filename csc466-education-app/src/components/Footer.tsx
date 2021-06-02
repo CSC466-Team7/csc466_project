@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { AppBar, Grid } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { tutorials } from "../data";
+import Markdown from "./Markdown";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -53,26 +55,41 @@ export default function Footer() {
 
         <div className={classes.linkTag}>
           <h3>Introduction</h3>
-          <Link to='/introduction'>Intro to Decision Trees</Link>
           <Link to='/getting-started'>Getting Started</Link>
+          <Link to='/preliminary-skills'>Preliminary Skills</Link>
+          <Link to='/introduction'>Intro to Decision Trees</Link>
         </div>
 
         <div className={classes.linkTag}>
           <h3>Tutorials</h3>
-          <Link to='/example/1'>Example #1</Link>
-          <Link to='/example/2'>Example #2</Link>
+          {tutorials.map((tutorial) =>
+            <Link to={`/${tutorial.notebook}`}>{tutorial.content.title}</Link>
+          )}
         </div>
 
         <div className={classes.linkTag}>
           <h3>Resources</h3>
-          <Link to='/preliminary-skills'>Preliminary Skills</Link>
-          <Link
-            to="https://github.com/CSC466-Team7/csc466_project"
+          <a
+            href="https://github.com/CSC466-Team7/csc466_project"
             target="_blank"
             rel="noreferrer noopener"
           >
             GitHub
-          </Link>
+          </a>
+          <a
+            href="https://github.com/CSC466-Team7/csc466_project/tree/main/code/notebooks"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Notebooks
+          </a>
+          <a
+            href="https://github.com/CSC466-Team7/csc466_project/tree/main/datasets"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            Datasets
+          </a>
         </div>
 
       </div>

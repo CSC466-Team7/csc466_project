@@ -21,7 +21,9 @@ export const tutorials = [
     content: {
       title: "Scikit Learn Classifier",
       description:
-        "Using the decision tree classifier we implemented in the previous tutorial, we can transform that into a classifier that works with sklearn"
+        "Using the decision tree classifier we implemented in the previous" +
+        " tutorial, we will now transform that into a classifier that works" +
+        " with sklearn"
     },
     notebook: "heart_classifier_with_sklearn"
   },
@@ -34,8 +36,8 @@ export const tutorials = [
     content: {
       title: "Bagging and Random Forests",
       description:
-        "Using what we know about decision trees, learn how to make more" +
-        " powerful models by leveraging bagging and random forests"
+        "Using what we know about decision trees, we will now learn how to" +
+        " make more powerful models by leveraging bagging and random forests"
     },
     notebook: "bagging_and_random_forest"
   }];

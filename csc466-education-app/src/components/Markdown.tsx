@@ -1,4 +1,10 @@
-import { Button, IconButton } from "@material-ui/core";
+import {
+  Button,
+  Checkbox,
+  FormControlLabel,
+  IconButton,
+  Typography
+} from "@material-ui/core";
 import { FileCopy, GetApp } from "@material-ui/icons";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
@@ -7,7 +13,6 @@ import React, { useEffect, useState } from "react";
 import { Collapse } from "react-bootstrap";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import ReactMarkdown from "react-markdown";
-import { Link } from "react-router-dom";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import dark from "react-syntax-highlighter/dist/esm/styles/prism/material-dark";
 // @ts-ignore
@@ -23,6 +28,7 @@ import {
 } from "../constants";
 import Article from "./Article";
 import "./Markdown.scss";
+import Header from "./Header";
 
 function CodeComponent(props: any) {
   const [collapsed, setCollapsed] = useState(true);
@@ -72,11 +78,13 @@ function DownloadButton(props: { href: string; children: React.ReactNode; }) {
   );
 }
 
-export default function Markdown(props: { fileName: string; version?: string; dataset?: string; }) {
+export default function Markdown(props:
+  { title: string, description: string, fileName: string; dataset?: string; }) {
   const [markdownAsString, setMarkdownAsString] = useState("");
+  const [isVersionClean, setVersionClean] = useState(true);
   
   const fetchMarkdown = async () => {
-    const url = getCleanedFileURL();
+    const url = isVersionClean ? getCleanedFileURL() : getOriginalFileURL();
     // Switch when testing locally
     // const file = await
     // import("../markdown/heart_decision_tree_classifier.md"); const toFetch =
@@ -101,7 +109,7 @@ export default function Markdown(props: { fileName: string; version?: string; da
   
   useEffect(() => {
     fetchMarkdown();
-  }, []);
+  }, [isVersionClean]);
   
   const components: any = {
     // @ts-ignore
@@ -143,41 +151,40 @@ export default function Markdown(props: { fileName: string; version?: string; da
     }
   };
   return (
-    <Article>
-      <div style={{
-        margin: 10,
-        padding: 10,
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center"
-      }}>
-        <DownloadButton href={getPythonNotebookFileUrl()}>
-          Download Python Notebook
-        </DownloadButton>
-        
-        {props?.version === "original" ? (
-          <DownloadButton href={getCleanedFileURL()}>
-            Download Cleaned
+    <>
+      <Header description={props.description} title={props.title}/>
+      <Article>
+        <div style={{
+          margin: 10,
+          padding: 10,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center"
+        }}>
+          <DownloadButton href={getPythonNotebookFileUrl()}>
+            Download Python Notebook
           </DownloadButton>
-        ) : (
-          <DownloadButton href={getOriginalFileURL()}>
-            Download Full
+          
+          {props.dataset &&
+          <DownloadButton href={`${DATASET_ASSETS_URL}/${props.dataset}`}>
+            Download Dataset
           </DownloadButton>
-        )}
-        
-        {props.dataset &&
-        <DownloadButton href={`${DATASET_ASSETS_URL}/${props.dataset}`}>
-          Download Dataset
-        </DownloadButton>
-        }
-      </div>
-      <article className="markdown-body" style={{margin: 0, padding: 0}}>
-        <ReactMarkdown
-          components={components}
-          skipHtml={false}
-          remarkPlugins={[remarkMath]}
-          rehypePlugins={[rehypeRaw, rehypeKatex]}>{markdownAsString}</ReactMarkdown>
-      </article>
-    </Article>
+          }
+        </div>
+        <FormControlLabel
+          control={<Checkbox
+            checked={!isVersionClean}
+            onChange={() => setVersionClean(!isVersionClean)} name="checkedA"/>}
+          label="Show all code"
+        />
+        <article className="markdown-body" style={{margin: 0, padding: 0}}>
+          <ReactMarkdown
+            components={components}
+            skipHtml={false}
+            remarkPlugins={[remarkMath]}
+            rehypePlugins={[rehypeRaw, rehypeKatex]}>{markdownAsString}</ReactMarkdown>
+        </article>
+      </Article>
+    </>
   );
 }
