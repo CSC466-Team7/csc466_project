@@ -15,7 +15,9 @@ const useStyles = makeStyles((theme: Theme) =>
     card: {
       width: "30%",
       minWidth: "300px",
-      margin: "15px"
+      margin: "15px",
+      display: "flex",
+      flexDirection: "column"
     },
     "media": {
       height: "240px",
@@ -59,7 +61,12 @@ export default function CustomCard(props: CardProps) {
         <h3>{props.content.title}</h3>
         <p>{props.content.description}</p>
       </CardContent>
-      <CardActions>
+      <CardActions style={{
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "flex-end",
+        flex: "1 1 auto",
+      }}>
         {/*If external link...*/}
         {props.linkTo &&
         <Button
