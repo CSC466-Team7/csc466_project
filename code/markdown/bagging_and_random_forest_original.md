@@ -1,3 +1,16 @@
+```python
+from sklearn.datasets import make_regression
+from numpy import mean
+from numpy import std
+from sklearn.datasets import make_regression
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import RepeatedKFold
+from sklearn.ensemble import BaggingRegressor
+from sklearn.datasets import load_boston
+import pandas as pd
+from sklearn.ensemble import RandomForestRegressor
+```
+
 ## Ensemble model with Bagging
 
 The guiding principle behind ensemble models is to leverage a combination of weak learners to create a strong learner. Bagging does this by creating subsets of the training data through resampling, and training an ML model of choice (in our example, we will use Decision Trees) on the substes of training data. This produces numerous models, each slightly different than others. By averaging the prediction of these inidividual learners for a given obervation, we should get more robust results that accounts for variance in the test data than we would get from an individual learner.
@@ -30,20 +43,6 @@ pred = results.mean()
 ```
 
 ### Bagging (Regressor) with SK Learn
-
-
-```python
-from sklearn.datasets import make_regression
-from numpy import mean
-from numpy import std
-from sklearn.datasets import make_regression
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import RepeatedKFold
-from sklearn.ensemble import BaggingRegressor
-from sklearn.datasets import load_boston
-import pandas as pd
-from sklearn.ensemble import RandomForestRegressor
-```
 
 For this example, we will load the boston home prices dataset provided by sklearn. The target variable will be the median home prices.
 
