@@ -37,7 +37,7 @@ export const tutorials = [
         "Using what we know about decision trees, learn how to make more" +
         " powerful models by leveraging bagging and random forests"
     },
-    notebook: "bagging_and_random_forests"
+    notebook: "bagging_and_random_forest"
   }];
 
 export const skills = [
