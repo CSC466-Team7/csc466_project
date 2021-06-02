@@ -9,7 +9,17 @@ export const tutorials = [
       title: "Decision Tree Algorithm",
       description:
         "Learn how to implement a decision tree from scratch with Python",
-      dataset: "heart.csv"
+      dataset: "heart.csv",
+      questions: [
+        {
+          question: "What is a cat?",
+          answer: "An animal"
+        },
+        {
+          question: "Where does wood come from?",
+          answer: "Trees"
+        }
+      ]
     },
     notebook: "heart_decision_tree_classifier"
   },
@@ -25,7 +35,17 @@ export const tutorials = [
         "Using the decision tree classifier we implemented in the previous" +
         " tutorial, we will now transform that into a classifier that works" +
         " with sklearn",
-      dataset: "heart.csv"
+      dataset: "heart.csv",
+      questions: [
+        {
+          question: "What is a cat?",
+          answer: "An animal"
+        },
+        {
+          question: "Where does wood come from?",
+          answer: "Trees"
+        }
+      ]
     },
     notebook: "heart_classifier_with_sklearn"
   },
@@ -39,7 +59,29 @@ export const tutorials = [
       title: "Bagging and Random Forests",
       description:
         "Using what we know about decision trees, we will now learn how to" +
-        " make more powerful models by leveraging bagging and random forests"
+        " make more powerful models by leveraging bagging and random forests",
+      questions: [
+        {
+          question: "What is the difference between Bagging and Random Forest?",
+          answer: "The primary difference between Random Forest and Bagging" +
+            " is that for Random Forest, only a random subset of features" +
+            " are used to create a tree, whereas in Bagging, the full set of" +
+            " features are used."
+        },
+        {
+          question: "In general, would an ensemble model perform better with" +
+            " 2 tress or 25 trees?",
+          answer: "It will perform better with 25 trees."
+        },
+        {
+          question: "What are some advantages of Random Forest?",
+          answer: "It helps to improve the accuracy of the model, especially" +
+            " when there is missing or insufficient data. Additionally," +
+            " it reduces overfitting in decision trees since it accounts for" +
+            " variance in data by training on varied samples of the" +
+            " training data."
+        }
+      ]
     },
     notebook: "bagging_and_random_forest"
   }];

@@ -27,8 +27,9 @@ import {
   NOTEBOOK_ASSETS_URL
 } from "../constants";
 import Article from "./Article";
-import "./Markdown.scss";
 import Header from "./Header";
+import "./Markdown.scss";
+import Question, { QuestionProps } from "./Question";
 
 function CodeComponent(props: any) {
   const [collapsed, setCollapsed] = useState(true);
@@ -79,7 +80,13 @@ function DownloadButton(props: { href: string; children: React.ReactNode; }) {
 }
 
 export default function Markdown(props:
-  { title: string, description: string, fileName: string; dataset?: string; }) {
+  {
+    title: string,
+    description: string,
+    fileName: string;
+    dataset?: string;
+    questions: QuestionProps[]
+  }) {
   const [markdownAsString, setMarkdownAsString] = useState("");
   const [isVersionClean, setVersionClean] = useState(true);
   
@@ -185,6 +192,12 @@ export default function Markdown(props:
             rehypePlugins={[rehypeRaw, rehypeKatex]}>{markdownAsString}</ReactMarkdown>
         </article>
       </Article>
+      <Typography variant={"h4"} style={{textAlign: "center"}}>
+        Test your understanding
+      </Typography>
+      {props.questions.map((questionAndAnswer) =>
+        <Question {...questionAndAnswer}/>)
+      }
     </>
   );
 }
