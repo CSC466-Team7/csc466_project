@@ -77,10 +77,10 @@ export default function Home() {
         buttonText="Get Started"
         linkTo="/getting-started"/>
       <CTACard
-        title="New to Decision Trees?"
-        description="Learn the theory behind decision trees"
-        buttonText="Introduction"
-        linkTo="/introduction"/>
+        title={"Unfamiliar with decision trees?"}
+        description={"Learn more about them by reading this article"}
+        buttonText={"Introduction to decision trees"}
+        linkTo={"/introduction"}/>
       <CTACard
         title="Need a refresher?"
         description="Brush up on your preliminary skills"

@@ -8,7 +8,8 @@ export const tutorials = [
     content: {
       title: "Decision Tree Algorithm",
       description:
-        "Learn how to implement a decision tree from scratch with Python"
+        "Learn how to implement a decision tree from scratch with Python",
+      dataset: "heart.csv"
     },
     notebook: "heart_decision_tree_classifier"
   },
@@ -23,7 +24,8 @@ export const tutorials = [
       description:
         "Using the decision tree classifier we implemented in the previous" +
         " tutorial, we will now transform that into a classifier that works" +
-        " with sklearn"
+        " with sklearn",
+      dataset: "heart.csv"
     },
     notebook: "heart_classifier_with_sklearn"
   },

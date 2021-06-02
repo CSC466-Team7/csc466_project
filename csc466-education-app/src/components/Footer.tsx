@@ -1,15 +1,14 @@
-import React from "react";
-import { Link, Route } from "react-router-dom";
-import { AppBar, Grid } from "@material-ui/core";
+import { AppBar, Typography } from "@material-ui/core";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import React from "react";
+import { Link } from "react-router-dom";
 import { tutorials } from "../data";
-import Markdown from "./Markdown";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       overflow: "hidden",
-      padding: "40px 0",
+      padding: "40px 0"
     },
     grid: {
       display: "flex",
@@ -18,55 +17,57 @@ const useStyles = makeStyles((theme: Theme) =>
       width: "80%",
       margin: "0 auto",
       "& h3 a": {
-        color: "white",
+        color: "white"
       },
       "& a": {
         display: "block",
         margin: "16px 0",
-        color: "#ddd",
+        color: "#ddd"
       },
       "& div": {
-        display: "inline-block",
-      },
+        display: "inline-block"
+      }
     },
     siteTag: {
       width: "40%",
       minWidth: "300px",
-      marginBottom: "30px",
+      marginBottom: "30px"
     },
     linkTag: {
       width: "16.6%",
       minWidth: "200px",
-      paddingRight: "3px",
-    },
-  }),
+      paddingRight: "3px"
+    }
+  })
 );
 
 export default function Footer() {
   const classes = useStyles();
-
+  
   return (
     <AppBar position="static" component="footer" className={classes.root}>
       <div className={classes.grid}>
         <div className={classes.siteTag}>
           <h2>Decision Trees</h2>
-          <p>CSC 466 – Spring 2021<br />Cal Poly – Dr. Anderson</p>
+          <p>CSC 466 | Dr. Anderson | Spring 2021 | Cal Poly</p>
+          <Typography variant="subtitle2">
+            Ben Glossner | Ethan Zimbelman | Rupal Totale
+          </Typography>
         </div>
-
         <div className={classes.linkTag}>
           <h3>Introduction</h3>
           <Link to='/getting-started'>Getting Started</Link>
           <Link to='/preliminary-skills'>Preliminary Skills</Link>
           <Link to='/introduction'>Intro to Decision Trees</Link>
         </div>
-
+        
         <div className={classes.linkTag}>
           <h3>Tutorials</h3>
           {tutorials.map((tutorial) =>
             <Link to={`/${tutorial.notebook}`}>{tutorial.content.title}</Link>
           )}
         </div>
-
+        
         <div className={classes.linkTag}>
           <h3>Resources</h3>
           <a
@@ -91,7 +92,7 @@ export default function Footer() {
             Datasets
           </a>
         </div>
-
+      
       </div>
     </AppBar>
   );

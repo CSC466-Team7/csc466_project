@@ -54,7 +54,6 @@ function App() {
                 <Markdown
                   {...tutorial.content}
                   fileName={tutorial.notebook}
-                  dataset="heart.csv" // TODO: What if no dataset?
                 />
               </Route>
             )}

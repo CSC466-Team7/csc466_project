@@ -33,15 +33,15 @@ export default function Introduction() {
         
         <h2>Running a tutorial</h2>
         <p>
-          Before we're able to work on an actual example, you must first&nbsp;
+          Before we're able to work on an actual tutorial, you must first&nbsp;
           <a
             href="https://jupyter.org/install#getting-started-with-the-classic-jupyter-notebook"
             target="_blank"
             rel="noreferrer"
           >
             install Jupyter Notebook
-          </a>. After you have successfully done that, download an example's
-          "starting file", and open it using Jupyter notebook.
+          </a>. After you have successfully done that, download an tutorial's
+          python notebook, and open it using Jupyter notebook.
         </p>
         
         <p>
@@ -51,9 +51,9 @@ export default function Introduction() {
         </p>
       </Article>
       <CTACard
-        title={"Working with Tutorials"}
+        title={"Learn more with tutorials"}
         description="Now that you know how to get them going, it's time to get your hands dirty with code!"
-        buttonText="Tutorials" linkTo="/tutorials"
+        buttonText="Browse tutorials" linkTo="/tutorials"
         secondary={true}
       />
     
