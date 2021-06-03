@@ -6,7 +6,7 @@ export const tutorials = [
       title: "Decision Tree Visual"
     },
     content: {
-      title: "Decision Tree Algorithm",
+      title: "Decision Tree - ID3",
       description:
         "Learn how to implement a decision tree from scratch with Python",
       dataset: "heart.csv",
@@ -25,6 +25,21 @@ export const tutorials = [
       ]
     },
     notebook: "heart_decision_tree_classifier"
+  },
+  /*Decision Tree Algorithm (C4.5)*/
+  {
+    img: {
+      url: "https://d1jnx9ba8s6j9r.cloudfront.net/blog/wp-content/uploads/2015/01/Decision-Tree-Example-6-Decision-tree-Edureka.png",
+      title: "Decision Tree Visual"
+    },
+    content: {
+      title: "Decision Tree - C4.5",
+      description:
+        "Implement decision trees from scratch using the C4.5 algorithm, which handles continuous features. Also included: min_split_count",
+      dataset: "heart.csv",
+      questions: []
+    },
+    notebook: "heart_decision_tree_c45"
   },
   /*Scikit Learn Classifier*/
   {
