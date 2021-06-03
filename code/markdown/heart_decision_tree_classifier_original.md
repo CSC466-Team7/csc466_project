@@ -519,6 +519,7 @@ def make_prediction(rules,x,default):
     
     matching_value = x[col]
     filter_rule = eq_rule(matching_value)
+    print(matching_value)
 
     viable_rules = list(filter(filter_rule, rules))
     
@@ -528,38 +529,6 @@ def make_prediction(rules,x,default):
     new_rules = list(map(lambda x: x[1:], viable_rules))
 
     return make_prediction(new_rules, x, default)
-```
-
-
-```python
-# Implementation of C4.5
-def make_tree2(X,y,min_split_count=5):
-    if len(y.unique()) == 1:
-        return y.iloc[0]
-    
-    if len(X.columns) == 0:
-        return high_freq_class(y)
-    
-    num_elements = len(y)
-    
-    if num_elements < min_split_count:
-        return high_freq_class(y)
-    
-    tree = {}
-    # Your solution here
-    col, gr = select_split(X, y)
-    tree[col] = {}
-    
-    if gr <= 0:
-        return high_freq_class(y)
-        
-    for v in X[col].unique():
-        indexes = np.where(X[col] == v)
-        new_X = X.iloc[indexes].drop(columns=([col]))
-        new_y = y.iloc[indexes]
-        tree[col][str(v)] = make_tree2(new_X, new_y, min_split_count)
-
-    return tree
 ```
 
 If you made a dictionary for your tree, you can use the `print_tree` function below to see what your function generated.
