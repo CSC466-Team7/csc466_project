@@ -181,7 +181,7 @@ If we have only 1 class in `y`, then there is no entropy or disorder so the entr
 
 ${\displaystyle \mathrm {H} {(S)}={-(1)\log _{2}(1)}}={-1 * 0}={0}$
 
-If we have more than 1 class, then we have at least some disorder in our data. If we had only 2 classes of say infinite values and 1 was *Class A* and all others were *Class B* we'd have very low entropy (approaching 0) since nearly all are the same class. Our entropy would be the worst if we had **half and half** between 2 classes. If we have more classes, say `n`, the worst entropy involves having `1/n` as the proportion of each class in `y`.
+If we have more than 1 class, then we have at least some disorder in our data. If we had only 2 classes of say infinite values and 1 was *Class A* and all others were *Class B* we'd have very low entropy (approaching 0) since nearly all are the same class. Our entropy would be the worst if we had **half and half** between the 2 classes. If we have more classes, say `n`, the worst entropy involves having `1/n` as the proportion of each class in `y`.
 
 
 ```python
@@ -194,6 +194,27 @@ def entropy(y):
         e += total
     return e
 ```
+
+<qinline>
+
+<question>
+
+Why bother taking the ${\displaystyle \mathrm -log _{2}(p(y))}$? Why not just sum the proportion of that class?
+
+</question>
+
+<answer>
+
+- For starters, if we just took ${\displaystyle \mathrm p(y)}$ in the sum, the sum would always equal 1. So that doesn't tell is how much randomness we have!
+- We still want to be able to say only 1 class means 0 entropy. This means if ${\displaystyle \mathrm p(y) = 1 -> H(S) = 0}$. This is satisfied as a property of logarithms!
+- We also want to say equal probabilties across all classes means ${\displaystyle \mathrm H(S) = 1}$. This means if we randomly selected 1 observation, it could be any of our `n` classes, which means there is maximum uncertainty for which would be chose. `1` is a convenient number for showing that. With logarithms of any base, this is satisfied with the equation.
+- The negative sign at the beginning of the equation ensures that as probability increases, our entropy decreases.
+- Thus, using ${\displaystyle \mathrm -log _{2}(p(y))}$ seems to satisfy all of what we want. In all, the logarithm part is what actually tells us the uncertainty of that class. Multiplying by the proportion rescales it for summing later.
+- For more information, I recommend visiting [here](https://stats.stackexchange.com/questions/87182/what-is-the-role-of-the-logarithm-in-shannons-entropy#:~:text=so%20the%20properties%20of%20logarithm,entropy%20for%20%CE%B1%E2%86%921\).&text=as%20the%20average%20of%20log,(1%2Fp)%20information.) 
+
+</answer>
+
+</qinline>
 
 ### Information Gain
 
@@ -214,6 +235,24 @@ From there, we sum our gains together to find the total entropy for that feature
 ${\displaystyle \mathrm Gain=OriginalEntropy-{\sum _{c\in B_C}}{Proportional Entropy(c)}}$
 
 The summed entropy must be less than or equal to the original entropy. For this reason, if our gain is 0, we can stop, since it will never get better.
+
+<qinline>
+
+<question>
+
+If `Class A` has entropy `0.9` and `Class B` has entropy `0.6` and the entropy disregarding the classes was `1.4`, which class has higher information gain?
+
+</question>
+
+<answer>
+
+`Class B`
+<br>
+If we started with an entropy of `1.4` and decreased it to `0.6`, our entropy decreased by `0.8`. For `Class A`, it only decreased by `0.5`. That means we got more information (can make better predictions at this point according to the training data) from `Class B`, since the difference in entropy was higher. 
+
+</answer>
+
+</qinline>
 
 
 ```python
@@ -262,7 +301,23 @@ Now we need to put it all together to make our decision tree. Since trees are na
 
 2. There are no more features. Let's say we have 1 more feature left and so we must select that one. If we have anything left over after that, we have nothing left to split on. Thus, we just make a logical decision and select the class in the target that occurs most often.
 
-3. Similarly, after finding our best split, if the gain on that split was 0, we can be done. This involves doing the same process as in (2).
+<qinline>
+
+<question>
+
+1. If `Class A` of `Feature 1` has an entropy of `0.3` and `Class X` of `Feature 3` has an entropy of `0.6`, which feature will be selected as the best split? Do we know that for sure?
+2. Assuming the 2 features had the same original entropy, can we know decide what our best split is between the 2 classes presented (assume no other class of either feature will be better)? If so, which? If not, why?
+
+</question>
+
+<answer>
+
+1. We don't know. We'd need to know the original entropies of both `Feature 1` and `Feature 3` to decide.
+2. We do now know. `Feature 1`, since it had an lower entropy, must have had a larger decrease in entropy, meaning higher information gained.
+
+</answer>
+
+</qinline>
 
 
 ```python
@@ -274,9 +329,6 @@ def tree_creation(X, y):
         return high_freq_class(y)
     
     col, gr = select_split(X, y)
-    
-    if gr == 0:
-        return high_freq_class(y)
     
     return tree_creation_main(X, y, col)
 ```
@@ -317,6 +369,22 @@ def tree_creation_main(X,y,col):
     return tree
 ```
 
+<qinline>
+
+<question>
+
+Is it possible to generate a tree with no features in it when given a dataset with 5 features with 30 observations? Why?
+
+</question>
+
+<answer>
+
+Yes, if there is only one target class it doesn't matter. That's always what you'd want to predict!
+
+</answer>
+
+</qinline>
+
 ### Generating the Rules
 
 Now that we have a complete tree, we need to be able to make a new prediction with it. We will do that by following our tree down the branches we have made. If we want to visualize it, we can imagine that each path from the root of our tree down to the leaves of our tree are a rule for how to predict what a given input should output.
@@ -339,7 +407,23 @@ else:
         return branch_step + find_new_rules(feature[class])
 ```
 
-Once we are done, we should have a dictionary or list of rules. You can also just use your tree for each prediction as well, but understanding how rules get generated and how to use them to make predictions is important.
+Once we are done, we should have a dictionary or list of rules. Understanding how rules get generated and how to use them to make predictions is important.
+
+<qinline>
+
+<question>
+
+Do you actually need to generate a ruleset? Can you just make predictions instead using the tree itself?
+
+</question>
+
+<answer>
+    
+Absolutely! The ruleset is a nice visualization of what's going on and shows you the different paths your tree can take. It *may* also make the coding a little easier for the predictions. However, you can certainly use just the tree instead moving forward. After all, the ruleset was just generated from the tree.
+
+</answer>
+
+</qinline>
 
 
 ```python
@@ -391,6 +475,32 @@ if observation_class not in tree:
 
 return make_prediction(tree.go_to(feature_to_use), x, default)
 ```
+
+<qinline>
+
+<question>
+
+Why give a default? The use-case above has an example of when to return it but can you give an example of how it might make it there? Let's say you have the following ruleset:
+```
+[[(Gender, Male), 1],
+ [(Gender, Female), 0]]
+```
+
+Give a possible input as `x`, your observation, for getting to the default base-case.
+
+</question>
+
+<answer>
+
+Possible observation:
+- (Gender = Non-Binary)
+- (Laugh = Loud)
+
+You can either give no classes that match OR you can give a `Gender` that doesn't exist.
+
+</answer>
+
+</qinline>
 
 
 ```python
@@ -809,6 +919,22 @@ print(f'F1 score: {f1_score(y_model_test, t_test)}')
 
 
 # Not bad!
+
+<qinline>
+
+<question>
+
+Why do you think our custom tree might have done better than SciKit-Learn's implementation?
+
+</question>
+
+<answer>
+
+This actually has to do with at least 2 things: when we decide to stop with building our tree (if we return when the infromation gain of the best split is 0) and how we decide which class from the target to choose if there is equal amount of both. If we vary those 2 things, our validation may be better. This is more luck based on the dataset then it is practically better. Can you think of ways to optimize this behavior? 
+
+</answer>
+
+</qinline>
 
 ### Citations
 - https://en.wikipedia.org/wiki/Entropy
