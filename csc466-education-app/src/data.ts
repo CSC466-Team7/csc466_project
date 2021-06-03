@@ -12,12 +12,15 @@ export const tutorials = [
       dataset: "heart.csv",
       questions: [
         {
-          question: "What is a cat?",
-          answer: "An animal"
+          question: "Using ID3 tree creation, assuming 3 features are left, how many more iterations, including this one and the base case, will it take to hit and return from a base case for creating the tree, assuming each feature, even after being split up, has at least 2 unique values per class (e.g. Class A of Feature 3 would still have 2 unique values) and all information gains are 0 no matter what?",
+          answer: "4. We'll keep going until we are out of features, so 1 for each feature and then 1 last iteration for the base case."
         },
         {
-          question: "Where does wood come from?",
-          answer: "Trees"
+          question: "If we returned the highest frequency class in our target when the max information gain from any column was 0, would our accuracy scores for VALIDATION DATA be able to decrease, increase, or stay the same? Select all that apply.",
+          answer: "The scores do any of the above.\n" +
+          "- Stay the same: Each branch we take after we have no more info gain may yield the same result as picking the highest frequency class.\n" +
+          "- Increase: An IG of 0 means there was no change in entropy. Branching again could cause entropy to change with a remaining feature (entropy can only decrease here)\n" +
+          "- Decrease: The opposite of the above"
         }
       ]
     },

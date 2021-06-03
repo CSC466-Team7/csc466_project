@@ -29,7 +29,8 @@ import {
 import Article from "./Article";
 import Header from "./Header";
 import "./Markdown.scss";
-import Question, { QuestionProps } from "./Question";
+import Question, { TextOnlyQuestion, TextOnlyQuestionProps } from "./Question";
+// import TEST_README from "../markdown/heart_decision_tree_classifier.md";
 
 function CodeComponent(props: any) {
   const [collapsed, setCollapsed] = useState(true);
@@ -79,13 +80,36 @@ function DownloadButton(props: { href: string; children: React.ReactNode; }) {
   );
 }
 
+export interface InlineMarkdownQuestionProps {
+  question: JSX.Element,
+  answer: JSX.Element,
+}
+
+// @ts-ignore
+const InlineMarkdownQuestion = (props: InlineMarkdownQuestionProps) => {
+  return (
+    <Question
+      question={props.question}
+      answer={props.answer}
+      header={(
+        <h3 className="mt-0"><u>Activity: Check Your Knowledge!</u></h3>
+      )}
+      styleOverrides={{
+        width: "100%",
+        marginTop: "5vh",
+        marginBottom: "5vh",
+      }}
+    />
+  );
+};
+
 export default function Markdown(props:
   {
     title: string,
     description: string,
     fileName: string;
     dataset?: string;
-    questions: QuestionProps[]
+    questions: TextOnlyQuestionProps[]
   }) {
   const [markdownAsString, setMarkdownAsString] = useState("");
   const [isVersionClean, setVersionClean] = useState(true);
@@ -93,9 +117,7 @@ export default function Markdown(props:
   const fetchMarkdown = async () => {
     const url = isVersionClean ? getCleanedFileURL() : getOriginalFileURL();
     // Switch when testing locally
-    // const file = await
-    // import("../markdown/heart_decision_tree_classifier.md"); const toFetch =
-    // file.default;
+    // const toFetch = TEST_README;
     const toFetch = url;
     const res = await fetch(toFetch);
     const resText = await res.text();
@@ -122,7 +144,7 @@ export default function Markdown(props:
     // @ts-ignore
     code({node, inline, className, children, ...props}) {
       const match = /language-(\w+)/.exec(className || "");
-      
+
       if (!inline && match) {
         return (
           <span>
@@ -155,8 +177,43 @@ export default function Markdown(props:
           className={className}
           children={children} {...props} />
       );
+    },
+
+    // @ts-ignore
+    qinline({children}) {
+      const filteredChildren = children.filter((c: any) => {
+        return typeof(c) !== "string";
+      });
+
+      if (filteredChildren.length !== 2) {
+        console.warn(children);
+        throw new Error("Wrong number of children for qinline!");
+      }
+
+      return (
+        <InlineMarkdownQuestion question={filteredChildren[0]} answer={filteredChildren[1]} />
+      );
+    },
+
+    // @ts-ignore
+    question({className, children, ...props}) {
+      return (
+        <div className={`${className} mr-1`} {...props}>
+          {children}
+        </div>
+      );
+    },
+
+    // @ts-ignore
+    answer({className, children, ...props}) {
+      return (
+        <p className={`${className}`} {...props}>
+          {children}
+        </p>
+      );
     }
   };
+
   return (
     <>
       <Header description={props.description} title={props.title}/>
@@ -196,7 +253,7 @@ export default function Markdown(props:
         Test your understanding
       </Typography>
       {props.questions.map((questionAndAnswer) =>
-        <Question {...questionAndAnswer}/>)
+        <TextOnlyQuestion {...questionAndAnswer}/>)
       }
     </>
   );
