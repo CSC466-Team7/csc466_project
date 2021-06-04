@@ -1,6 +1,6 @@
 # Predicting Heart Disease
 
-## Setting up Decision Tree (including categorical features)
+## Setting up Decision Tree (including continuous features)
 
 ### We will be implementing a decision tree that uses entropy to determine information gain for deciding when to split.
 
@@ -20,17 +20,17 @@ Finding the optimal split for continuous features must be computed each time we 
 
 <question>
 
-    Why do we have to find a split and bin continuous features when building our tree?
+Why do we have to find a split and bin continuous features when building our tree?
 
 </question>
 
 <answer>
 
-    If we leave these features as continuous, there will be minimal information gain if this feature is chosen while building our tree. For example, consider the following.
+If we leave these features as continuous, there will be minimal information gain if this feature is chosen while building our tree. For example, consider the following.
     
-    We have `ages=[20, 30, 40, 40, 50]` and `targets=[0, 1, 0, 1, 0]` respectively. Without computing actual information gain and for the sake of example, we can see that choosing `age=30` as our split point means that we are left with two paths. One with `age=30` (with only one person matching this criteria) and one with `age!=30` (of which, 4 people live).
+We have `ages=[20, 30, 40, 40, 50]` and `targets=[0, 1, 0, 1, 0]` respectively. Without computing actual information gain and for the sake of example, we can see that choosing `age=30` as our split point means that we are left with two paths. One with `age=30` (with only one person matching this criteria) and one with `age!=30` (of which, 4 people live).
     
-    This is clearly not optimal as this process could be repeated for the remaining people in the `age!=30` category, leading to an overfitted tree. Instead, we find the use our methd of finding the split location that gives the maximal gain and bin our variables according to this.
+This is clearly not optimal as this process could be repeated for the remaining people in the `age!=30` category, leading to an overfitted tree. Instead, we find the use our methd of finding the split location that gives the maximal gain and bin our variables according to this.
     
 </answer>
 
