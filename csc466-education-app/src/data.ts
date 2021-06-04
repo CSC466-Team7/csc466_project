@@ -37,7 +37,16 @@ export const tutorials = [
       description:
         "Implement decision trees from scratch using the C4.5 algorithm, which handles continuous features. Also included: min_split_count",
       dataset: "heart.csv",
-      questions: []
+      questions: [
+        {
+          question: "How does the C4.5 algorithm handle features with continuous values when choosing a variable to split on?",
+          answer: "When we encounter a continuous variable while choosing a feature to split on, we iterate through all possible splits between the values in this feature. At each point, we calculate the information gained if a split was made at this point. After calculating all possible splits and the associated information gained, we choose the split that yeilds us the most information gained. At this point, we treat this column as a categorical feature based on where the split was and then continue with the normal decision tree creation.\n Note: We do not modify the actual data after finding a split, this is only used for creating the tree."
+        },
+        {
+          question: "How can you determine a good value for min_split_count?",
+          answer: "This is slightly dependent on the size of your dataset. With larger datasets, you can have higher min_split_counts that will still produce accurate trees, while smaller datasets may require smaller values (as each split will significantly reduce the amount of items remaining). You can use a testing-based approach to determine an optimal value by building trees with differing values for the min_split_count and comparing their performance using a testing dataset."
+        }
+      ]
     },
     notebook: "heart_decision_tree_c45"
   },
