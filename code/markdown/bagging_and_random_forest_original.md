@@ -13,7 +13,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 ## Ensemble model with Bagging
 
-The guiding principle behind ensemble models is to leverage a combination of weak learners to create a strong learner. Bagging does this by creating subsets of the training data through resampling, and training an ML model of choice (in our example, we will use Decision Trees) on the substes of training data. This produces numerous models, each slightly different than others. By averaging the prediction of these inidividual learners for a given obervation, we should get more robust results that accounts for variance in the test data than we would get from an individual learner.
+The guiding principle behind ensemble models is to leverage a combination of weak learners to create a strong learner. Bagging does this by creating subsets of the training data through resampling, and training an ML model of choice (in our example, we will use the Custom Decision Tree model we made in the previous tutorial) on the substes of training data. This produces numerous models, each slightly different than others. By averaging the prediction of these inidividual learners for a given obervation, we should get more robust results that accounts for variance in the test data than we would get from an individual learner.
 
 ### Pseudocode for Bagging
 
@@ -44,9 +44,7 @@ pred = results.mean()
 
 ### Bagging (Classifier) with SK Learn
 
-For this example, we will load the boston home prices dataset provided by sklearn. The target variable will be the median home prices.
-
-Learn more about this dataset [here](https://scikit-learn.org/stable/datasets/toy_dataset.html#boston-dataset).
+For this example, we will continue working with the heart diseases dataset.
 
 
 ```python
@@ -56,7 +54,7 @@ home = str(Path.home()) # all other paths are relative to this path. change to s
 %autoreload 2
 ```
 
-First, let's run our previous tutorial to import our custom decision tree classifier from the previous tutorial.
+First, let's run our previous tutorial to import our custom decision tree classifier from the previous tutorial, as well as the cleaned feature set and target column.
 
 
 ```python
@@ -447,6 +445,10 @@ display(y)
 
 We will now evaluate the `f1` score for an ensemble model with the following number of learners: 1, 10, 25, 50
 
+Before we proceed with that, what would you expect to see happen to the `f1` score as the number of trees increases?
+
+It should get better since we have more learners and thus more variance to make a prediction.
+
 
 ```python
 scores = {1: [], 10: [], 25: [], 50: []}
@@ -552,7 +554,7 @@ It is clear from the above, that as the number of estimators (i.e trees) increas
 
 ## Extending bagging with Random Forests
 
-Random forests is very similar to bagging, with the addition of dropping a few features in the training data (i.e only using a subset of features instead of all of them, chose randomly) for each iteration along with resampling it. This adds another level of randmness to the generationg of trees, and further account for variance. 
+Random forests is very similar algorithm to bagging, with the addition of dropping a few features in the training data (i.e only using a subset of features instead of all of them, chose randomly) for each iteration along with resampling it. This adds another level of randmness to the generationg of trees, and further account for variance. 
 
 ### Pseudocode for Random Forests
 The pseudocode below is **very** similar to the one above, except for the `resample` line.
