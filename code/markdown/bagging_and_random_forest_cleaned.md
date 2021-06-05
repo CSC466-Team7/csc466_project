@@ -29,17 +29,292 @@ for tree in trees:
 pred = results.mean()
 ```
 
-### Bagging (Regressor) with SK Learn
+### Bagging (Classifier) with SK Learn
 
 For this example, we will load the boston home prices dataset provided by sklearn. The target variable will be the median home prices.
 
 Learn more about this dataset [here](https://scikit-learn.org/stable/datasets/toy_dataset.html#boston-dataset).
 
+First, let's run our previous tutorial to import our custom decision tree classifier from the previous tutorial.
+
 
 ```python
-data = load_boston()
-X = pd.DataFrame(data.data, columns=data.feature_names)
-y = pd.Series(data.target)
+%run heart_classifier_with_sklearn.ipynb
+```
+
+    Accuracy: 0.7912087912087912
+    F1 score: 0.7999999999999999
+    {
+        "thal/7": {
+            "0": {
+                "sex/0": {
+                    "0": 1,
+                    "1": 0
+                }
+            },
+            "1": {
+                "ca/6": {
+                    "0": {
+                        "restecg/3": {
+                            "0": 1,
+                            "1": {
+                                "slope/5": {
+                                    "0": 0,
+                                    "1": 0
+                                }
+                            }
+                        }
+                    },
+                    "1": 0,
+                    "2": 0,
+                    "3": 0
+                }
+            },
+            "2": {
+                "ca/6": {
+                    "0": {
+                        "restecg/3": {
+                            "0": {
+                                "cp/1": {
+                                    "0": {
+                                        "slope/5": {
+                                            "1": 1,
+                                            "2": {
+                                                "sex/0": {
+                                                    "0": 1,
+                                                    "1": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "1": {
+                                        "sex/0": {
+                                            "0": 1,
+                                            "1": {
+                                                "slope/5": {
+                                                    "1": 0,
+                                                    "2": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "2": 1,
+                                    "3": {
+                                        "sex/0": {
+                                            "0": 1,
+                                            "1": {
+                                                "exang/4": {
+                                                    "0": 0,
+                                                    "1": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "1": {
+                                "cp/1": {
+                                    "0": {
+                                        "exang/4": {
+                                            "0": 1,
+                                            "1": {
+                                                "slope/5": {
+                                                    "1": 0,
+                                                    "2": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "1": 1,
+                                    "2": {
+                                        "sex/0": {
+                                            "0": 1,
+                                            "1": {
+                                                "exang/4": {
+                                                    "0": {
+                                                        "slope/5": {
+                                                            "0": 1,
+                                                            "1": 0,
+                                                            "2": 1
+                                                        }
+                                                    },
+                                                    "1": 1
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "3": 1
+                                }
+                            },
+                            "2": {
+                                "cp/1": {
+                                    "0": 0,
+                                    "2": 1
+                                }
+                            }
+                        }
+                    },
+                    "1": {
+                        "cp/1": {
+                            "0": 0,
+                            "1": 1,
+                            "2": 1,
+                            "3": 0
+                        }
+                    },
+                    "2": {
+                        "exang/4": {
+                            "0": {
+                                "fbs/2": {
+                                    "0": {
+                                        "sex/0": {
+                                            "0": 1,
+                                            "1": {
+                                                "restecg/3": {
+                                                    "0": 1,
+                                                    "1": 0
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "1": 0
+                                }
+                            },
+                            "1": 0
+                        }
+                    },
+                    "3": {
+                        "cp/1": {
+                            "0": 0,
+                            "2": {
+                                "fbs/2": {
+                                    "0": 0,
+                                    "1": 1
+                                }
+                            }
+                        }
+                    },
+                    "4": 1
+                }
+            },
+            "3": {
+                "cp/1": {
+                    "0": {
+                        "ca/6": {
+                            "0": {
+                                "slope/5": {
+                                    "0": 0,
+                                    "1": 0,
+                                    "2": {
+                                        "restecg/3": {
+                                            "0": {
+                                                "exang/4": {
+                                                    "0": 0,
+                                                    "1": 0
+                                                }
+                                            },
+                                            "1": {
+                                                "exang/4": {
+                                                    "0": 1,
+                                                    "1": 0
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "1": {
+                                "slope/5": {
+                                    "1": {
+                                        "restecg/3": {
+                                            "0": 0,
+                                            "1": {
+                                                "exang/4": {
+                                                    "0": 0,
+                                                    "1": 0
+                                                }
+                                            },
+                                            "2": 0
+                                        }
+                                    },
+                                    "2": 0
+                                }
+                            },
+                            "2": 0,
+                            "3": 0,
+                            "4": 0
+                        }
+                    },
+                    "1": {
+                        "slope/5": {
+                            "0": 0,
+                            "1": 1,
+                            "2": {
+                                "fbs/2": {
+                                    "0": {
+                                        "restecg/3": {
+                                            "0": 1,
+                                            "1": 0
+                                        }
+                                    },
+                                    "1": 1
+                                }
+                            }
+                        }
+                    },
+                    "2": {
+                        "slope/5": {
+                            "1": {
+                                "ca/6": {
+                                    "0": {
+                                        "exang/4": {
+                                            "0": 1,
+                                            "1": {
+                                                "fbs/2": {
+                                                    "0": {
+                                                        "restecg/3": {
+                                                            "0": 1,
+                                                            "1": 0
+                                                        }
+                                                    },
+                                                    "1": 0
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "1": 0,
+                                    "3": 0
+                                }
+                            },
+                            "2": 1
+                        }
+                    },
+                    "3": {
+                        "fbs/2": {
+                            "0": {
+                                "restecg/3": {
+                                    "0": 1,
+                                    "1": {
+                                        "slope/5": {
+                                            "1": 0,
+                                            "2": 1
+                                        }
+                                    }
+                                }
+                            },
+                            "1": 1
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+```python
+X = X2 # From the previous notebook
+y = t # From the previous notebook
 display(X.head())
 display(y)
 ```
@@ -63,101 +338,71 @@ display(y)
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>CRIM</th>
-      <th>ZN</th>
-      <th>INDUS</th>
-      <th>CHAS</th>
-      <th>NOX</th>
-      <th>RM</th>
-      <th>AGE</th>
-      <th>DIS</th>
-      <th>RAD</th>
-      <th>TAX</th>
-      <th>PTRATIO</th>
-      <th>B</th>
-      <th>LSTAT</th>
+      <th>sex</th>
+      <th>cp</th>
+      <th>fbs</th>
+      <th>restecg</th>
+      <th>exang</th>
+      <th>slope</th>
+      <th>ca</th>
+      <th>thal</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.00632</td>
-      <td>18.0</td>
-      <td>2.31</td>
-      <td>0.0</td>
-      <td>0.538</td>
-      <td>6.575</td>
-      <td>65.2</td>
-      <td>4.0900</td>
-      <td>1.0</td>
-      <td>296.0</td>
-      <td>15.3</td>
-      <td>396.90</td>
-      <td>4.98</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.02731</td>
-      <td>0.0</td>
-      <td>7.07</td>
-      <td>0.0</td>
-      <td>0.469</td>
-      <td>6.421</td>
-      <td>78.9</td>
-      <td>4.9671</td>
-      <td>2.0</td>
-      <td>242.0</td>
-      <td>17.8</td>
-      <td>396.90</td>
-      <td>9.14</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.02729</td>
-      <td>0.0</td>
-      <td>7.07</td>
-      <td>0.0</td>
-      <td>0.469</td>
-      <td>7.185</td>
-      <td>61.1</td>
-      <td>4.9671</td>
-      <td>2.0</td>
-      <td>242.0</td>
-      <td>17.8</td>
-      <td>392.83</td>
-      <td>4.03</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.03237</td>
-      <td>0.0</td>
-      <td>2.18</td>
-      <td>0.0</td>
-      <td>0.458</td>
-      <td>6.998</td>
-      <td>45.8</td>
-      <td>6.0622</td>
-      <td>3.0</td>
-      <td>222.0</td>
-      <td>18.7</td>
-      <td>394.63</td>
-      <td>2.94</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.06905</td>
-      <td>0.0</td>
-      <td>2.18</td>
-      <td>0.0</td>
-      <td>0.458</td>
-      <td>7.147</td>
-      <td>54.2</td>
-      <td>6.0622</td>
-      <td>3.0</td>
-      <td>222.0</td>
-      <td>18.7</td>
-      <td>396.90</td>
-      <td>5.33</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
     </tr>
   </tbody>
 </table>
@@ -165,31 +410,31 @@ display(y)
 
 
 
-    0      24.0
-    1      21.6
-    2      34.7
-    3      33.4
-    4      36.2
-           ... 
-    501    22.4
-    502    20.6
-    503    23.9
-    504    22.0
-    505    11.9
-    Length: 506, dtype: float64
+    0      1
+    1      1
+    2      1
+    3      1
+    4      1
+          ..
+    298    0
+    299    0
+    300    0
+    301    0
+    302    0
+    Name: disease_present, Length: 303, dtype: int64
 
 
-We will now evaluate the `mean_absolute_error` for an ensemble model with the following number of learners: 1, 10, 25, 50
+We will now evaluate the `f1` score for an ensemble model with the following number of learners: 1, 10, 25, 50
 
 
 ```python
 scores = {1: [], 10: [], 25: [], 50: []}
 for num_estimators in scores:
   # define the model
-  model = BaggingRegressor(n_estimators=num_estimators)
+  model = BaggingClassifier(n_estimators=num_estimators, base_estimator=CustomDecisionTreeClassifier())
   # evaluate the model
   cv = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
-  n_scores = cross_val_score(model, X, y, scoring='neg_mean_absolute_error', cv=cv, n_jobs=-1, error_score='raise')
+  n_scores = cross_val_score(model, X, y, scoring='f1', cv=cv, n_jobs=-1, error_score='raise')
   scores[num_estimators] = n_scores
 # report performance
 scores_df = pd.DataFrame.from_dict(scores)
@@ -224,38 +469,38 @@ display(scores_df.head())
   <tbody>
     <tr>
       <th>0</th>
-      <td>-3.380392</td>
-      <td>-2.087647</td>
-      <td>-1.988549</td>
-      <td>-2.022314</td>
+      <td>0.774194</td>
+      <td>0.750000</td>
+      <td>0.787879</td>
+      <td>0.750000</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-3.286275</td>
-      <td>-2.411765</td>
-      <td>-2.601725</td>
-      <td>-2.444353</td>
+      <td>0.687500</td>
+      <td>0.687500</td>
+      <td>0.727273</td>
+      <td>0.727273</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-3.454902</td>
-      <td>-1.891176</td>
-      <td>-1.808863</td>
-      <td>-1.840431</td>
+      <td>0.687500</td>
+      <td>0.857143</td>
+      <td>0.888889</td>
+      <td>0.777778</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-4.962745</td>
-      <td>-3.588039</td>
-      <td>-3.664392</td>
-      <td>-3.366784</td>
+      <td>0.583333</td>
+      <td>0.454545</td>
+      <td>0.560000</td>
+      <td>0.545455</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-2.556863</td>
-      <td>-2.142549</td>
-      <td>-1.891843</td>
-      <td>-1.888000</td>
+      <td>0.787879</td>
+      <td>0.750000</td>
+      <td>0.764706</td>
+      <td>0.727273</td>
     </tr>
   </tbody>
 </table>
@@ -274,15 +519,15 @@ scores_df.mean()
 
 
 
-    1    -3.252587
-    10   -2.337840
-    25   -2.247047
-    50   -2.218703
+    1     0.756065
+    10    0.778015
+    25    0.787050
+    50    0.778031
     dtype: float64
 
 
 
-It is clear from the above, that as the number of estimators (i.e trees) increases, the ensemble model produces more robust predictions.
+It is clear from the above, that as the number of estimators (i.e trees) increases, the ensemble model produces more robust predictions in general. Since our decision tree classifier is a really strong learner for the data set we have, there is not much variation.
 
 ## Extending bagging with Random Forests
 
@@ -316,17 +561,17 @@ for tree in trees:
 pred = results.mean()
 ```
 
-### Random Forest (Regressor) with SK Learn
+### Random Forest (Classifier) with SK Learn
 
 
 ```python
 scores = {1: [], 10: [], 25: [], 50: []}
 for num_estimators in scores:
   # define the model
-  model = RandomForestRegressor(n_estimators=num_estimators)
+  model = RandomForestClassifier(n_estimators=num_estimators)
   # evaluate the model
   cv = RepeatedKFold(n_splits=10, n_repeats=3, random_state=1)
-  n_scores = cross_val_score(model, X, y, scoring='neg_mean_absolute_error', cv=cv, n_jobs=-1, error_score='raise')
+  n_scores = cross_val_score(model, X, y, scoring='f1', cv=cv, n_jobs=-1, error_score='raise')
   scores[num_estimators] = n_scores
 # report performance
 scores_df = pd.DataFrame.from_dict(scores)
@@ -361,38 +606,38 @@ display(scores_df.head())
   <tbody>
     <tr>
       <th>0</th>
-      <td>-3.611765</td>
-      <td>-2.184118</td>
-      <td>-1.848000</td>
-      <td>-1.870196</td>
+      <td>0.733333</td>
+      <td>0.774194</td>
+      <td>0.812500</td>
+      <td>0.812500</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>-3.288235</td>
-      <td>-2.633725</td>
-      <td>-2.332784</td>
-      <td>-2.465294</td>
+      <td>0.687500</td>
+      <td>0.800000</td>
+      <td>0.787879</td>
+      <td>0.787879</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>-3.001961</td>
-      <td>-1.844706</td>
-      <td>-1.761569</td>
-      <td>-1.761176</td>
+      <td>0.857143</td>
+      <td>0.914286</td>
+      <td>0.888889</td>
+      <td>0.918919</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>-3.907843</td>
-      <td>-3.690588</td>
-      <td>-3.386431</td>
-      <td>-3.418706</td>
+      <td>0.620690</td>
+      <td>0.615385</td>
+      <td>0.640000</td>
+      <td>0.615385</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>-2.827451</td>
-      <td>-1.878235</td>
-      <td>-1.827216</td>
-      <td>-1.787961</td>
+      <td>0.727273</td>
+      <td>0.823529</td>
+      <td>0.857143</td>
+      <td>0.823529</td>
     </tr>
   </tbody>
 </table>
@@ -409,10 +654,10 @@ scores_df.mean()
 
 
 
-    1    -3.196889
-    10   -2.314654
-    25   -2.205537
-    50   -2.178932
+    1     0.787345
+    10    0.819488
+    25    0.824294
+    50    0.818179
     dtype: float64
 
 
