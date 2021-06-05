@@ -445,9 +445,21 @@ display(y)
 
 We will now evaluate the `f1` score for an ensemble model with the following number of learners: 1, 10, 25, 50
 
+<qinline>
+
+<question>
+
 Before we proceed with that, what would you expect to see happen to the `f1` score as the number of trees increases?
 
+</question>
+
+<answer>
+
 It should get better since we have more learners and thus more variance to make a prediction.
+
+</answer>
+
+</qinline>
 
 
 ```python
