@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
       width: "30%",
-      minWidth: "300px",
+      minWidth: "500px",
       margin: "15px",
       display: "flex",
       flexDirection: "column"
