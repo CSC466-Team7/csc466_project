@@ -65,12 +65,8 @@ export const tutorials = [
       dataset: "heart.csv",
       questions: [
         {
-          question: "What is a cat?",
-          answer: "An animal"
-        },
-        {
-          question: "Where does wood come from?",
-          answer: "Trees"
+          question: "Why do you think `check_estimator` has no output if it succeeded? What might it do if it failed?",
+          answer: "`check_estimator` is basically doing unit testing on your estimator. When it fails, an error is raised. Thus no errors raised means all the checks succeeded."
         }
       ]
     },

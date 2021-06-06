@@ -30,7 +30,7 @@ import Article from "./Article";
 import Header from "./Header";
 import "./Markdown.scss";
 import Question, { TextOnlyQuestion, TextOnlyQuestionProps } from "./Question";
-// import TEST_README from "../markdown/heart_decision_tree_classifier.md";
+// import TEST_README from "../markdown/heart_classifier_with_sklearn.md";
 
 function CodeComponent(props: any) {
   const [collapsed, setCollapsed] = useState(true);
@@ -138,7 +138,7 @@ export default function Markdown(props:
   
   useEffect(() => {
     fetchMarkdown();
-  }, [isVersionClean]);
+  }, [isVersionClean, props.fileName]);
   
   const components: any = {
     // @ts-ignore
