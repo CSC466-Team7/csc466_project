@@ -43,19 +43,19 @@ The `_more_tags()` method is provided here with a return dictionary of `poor_sco
 
 <qinline>
     
-    <question>
+<question>
     
-       Why would we want to provide an optional default? Why not just have the classifier choose what seems best for us? What could a problem be if the user chooses a default, though?
+Why would we want to provide an optional default? Why not just have the classifier choose what seems best for us? What could a problem be if the user chooses a default, though?
     
-    </question>
+</question>
     
-    <answer>
+<answer>
     
-    The user may tune their `default` during hyperparameterizing optimization (model tuning) to choose the seemingly best default. They also may know which default should be best under certain cases for training.
+The user may tune their `default` during hyperparameterizing optimization (model tuning) to choose the seemingly best default. They also may know which default should be best under certain cases for training.
+
+This could lead, though, to overfitting if the user isn't careful.
     
-    This could lead, though, to overfitting if the user isn't careful.
-    
-    </answer>
+</answer>
     
 </qinline>
 
@@ -120,17 +120,17 @@ Some helpful `numpy` functions for dealing with `numpy` arrays:
 
 <qinline>
     
-    <question>
-    
-       Does the `make_predictions` main function logic need to change? If so, how?
-    
-    </question>
-    
-    <answer>
-    
-        Not really! Since our make predictions just takes the rules and an observation, the `make_predictions` function can stay the same. The only thing that really needs to happen is some preprocessing that coerces the observation into a `numpy` array and checks to make sure the model has been fitted. 
-    
-    </answer>
+<question>
+
+Does the `make_predictions` main function logic need to change? If so, how?
+
+</question>
+
+<answer>
+
+Not really! Since our make predictions just takes the rules and an observation, the `make_predictions` function can stay the same. The only thing that really needs to happen is some preprocessing that coerces the observation into a `numpy` array and checks to make sure the model has been fitted. 
+
+</answer>
     
 </qinline>
 
