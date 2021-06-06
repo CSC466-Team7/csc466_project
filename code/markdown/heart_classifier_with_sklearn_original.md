@@ -208,6 +208,24 @@ We also provide a `default` value for which the user can give to put as the defa
 
 The `_more_tags()` method is provided here with a return dictionary of `poor_score = True` to let sklearn know that our decision tree may be a poor predictor and that's ok. This is because our decision tree is not effective for quanititative data that sklearn may pass as tests for our classifier. We can make a classifier that does handle continuous variables, though. We have not done that here.
 
+<qinline>
+    
+    <question>
+    
+       Why would we want to provide an optional default? Why not just have the classifier choose what seems best for us? What could a problem be if the user chooses a default, though?
+    
+    </question>
+    
+    <answer>
+    
+    The user may tune their `default` during hyperparameterizing optimization (model tuning) to choose the seemingly best default. They also may know which default should be best under certain cases for training.
+    
+    This could lead, though, to overfitting if the user isn't careful.
+    
+    </answer>
+    
+</qinline>
+
 ### Writing fit/predict
 
 So what changes here?
@@ -266,6 +284,22 @@ Some helpful `numpy` functions for dealing with `numpy` arrays:
 
 
 #### The nice part about all of this is that the `generate_rules` function really doesn't have to change since the given tree is still just a dictionary.
+
+<qinline>
+    
+    <question>
+    
+       Does the `make_predictions` main function logic need to change? If so, how?
+    
+    </question>
+    
+    <answer>
+    
+        Not really! Since our make predictions just takes the rules and an observation, the `make_predictions` function can stay the same. The only thing that really needs to happen is some preprocessing that coerces the observation into a `numpy` array and checks to make sure the model has been fitted. 
+    
+    </answer>
+    
+</qinline>
 
 ### Printing it out with column names
 
