@@ -378,7 +378,7 @@ print(f'F1 score: {f1_score(y_test, t_test)}')
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import cross_val_score
 
-clf = DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=5)
+clf = DecisionTreeClassifier(random_state=0, criterion='entropy', min_samples_split=4)
 model = clf.fit(X2_train, t_train)
 
 y_model_test = model.predict(X2_test)
@@ -393,7 +393,7 @@ print(f'F1 score: {f1_score(y_model_test, t_test)}')
 
 # Not bad!
 
-The difference here is likely due to the 
+The difference here is likely due to the way splits are determined for continuous features using SciKit Learn compared to how we manually compute them. The difference between these two trees is quite small considering the amount of training data provided to them, so we should be quite happy with either result!
 
 <qinline>
 
